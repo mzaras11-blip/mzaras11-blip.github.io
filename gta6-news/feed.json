@@ -1,5 +1,30 @@
 {
+  "updated": "2026-11-16T13:06:39-05:00",
   "items": [
+    {
+      "title": "GTA VI hacker pleads guilty in London, three days before launch",
+      "summary": "Arion Kurtaj, 21, pleaded guilty at Woolwich Crown Court to the 2022 Rockstar hack that leaked dozens of unfinished GTA VI clips, plus other Lapsus$ offences; he will be sentenced later, and Rockstar put its recovery cost at $5 million.",
+      "source": "Engadget / BBC",
+      "url": "https://www.engadget.com/2318001/gta-6-hacker-pleads-guilty-to-stealing-and-leaking-gameplay-footage/",
+      "date": "2026-11-16",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Game Awards nominations land Tuesday — before any GTA VI reviews",
+      "summary": "Polygon notes The Game Awards nominations are announced at noon ET on November 17, a day before GTA VI reviews are expected on November 18 under Rockstar's usual day-before-launch pattern, with the eligibility cutoff on November 20.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-goty-nominations/",
+      "date": "2026-11-16",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Second mandatory pre-launch update is out — install it before Thursday",
+      "summary": "A second pre-launch patch, version 01.002.001 at 602.5 MB on PS5, is rolling out to pre-loads and must be installed before GTA VI unlocks on November 19; Rockstar has not published patch notes for it.",
+      "source": "GamingBible",
+      "url": "https://www.gamingbible.com/news/gta-6-crucial-ps5-update-059387-20261116",
+      "date": "2026-11-16",
+      "tag": "GUIDES"
+    },
     {
       "title": "Release week is here: USA Today's GTA VI primer covers editions, story and the score",
       "summary": "USA Today's launch-week explainer rounds up what to know before Thursday: Jason and Lucia's story, the $79.99 Standard and $99.99 Ultimate editions, the Justice-composed score album due December 11, and still no PC date from Rockstar.",
@@ -96,6 +121,5 @@
       "title": "Editions explained: Standard $79.99 vs Ultimate $99.99",
       "url": "https://gtasix.org/en/guide/editions/"
     }
-  ],
-  "updated": "2026-11-16T07:05:51-05:00"
+  ]
 }
