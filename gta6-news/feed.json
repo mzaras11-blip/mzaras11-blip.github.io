@@ -1,6 +1,30 @@
 {
   "items": [
     {
+      "title": "Release week is here: USA Today's GTA VI primer covers editions, story and the score",
+      "summary": "USA Today's launch-week explainer rounds up what to know before Thursday: Jason and Lucia's story, the $79.99 Standard and $99.99 Ultimate editions, the Justice-composed score album due December 11, and still no PC date from Rockstar.",
+      "source": "USA TODAY",
+      "url": "https://www.usatoday.com/story/tech/gaming/2026/11/16/gta-6-everything-to-know-preorder-story-actors-cost/92711409007/",
+      "date": "2026-11-16",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "Miami turns into Vice City for launch week",
+      "summary": "AFP reports Miami is awash in neon-pink Vice City branding under a $3.9 million Miami-Dade County deal with Rockstar, with signs at the Heat's arena and the airport, murals downtown, and fans posing with a 'Welcome to Vice City' car on Miami Beach.",
+      "source": "AFP / The Business Standard",
+      "url": "https://www.tbsnews.net/game/miami-evokes-vice-city-ahead-grand-theft-auto-6-launch-1603871",
+      "date": "2026-11-16",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Madden NFL 27 begs players: don't delete us to make room for GTA VI",
+      "summary": "EA added a Vice City-styled 'Don't Delete!' pop-up in Madden NFL 27 as players clear space for GTA VI's up-to-212 GB pre-load, teasing something in Madden for November 17, two days before launch.",
+      "source": "Proven Gamer / IGN",
+      "url": "https://provengamer.com/2026/11/15/madden-nfl-27-dont-delete-gta-6/",
+      "date": "2026-11-15",
+      "tag": "NEWS"
+    },
+    {
       "title": "Guardian hands-on: Jason and Lucia start small, and their bond is yours to keep or lose",
       "summary": "The Guardian visited Rockstar North and saw the game played live: the pair begin with low-end cars and basic locks, plan heists carefully, and can nurture or neglect their relationship, which Rockstar calls a first attempt to encourage empathy in GTA.",
       "source": "Notebookcheck / The Guardian",
@@ -73,5 +97,5 @@
       "url": "https://gtasix.org/en/guide/editions/"
     }
   ],
-  "updated": "2026-11-15T19:05:26-05:00"
+  "updated": "2026-11-16T07:05:51-05:00"
 }
