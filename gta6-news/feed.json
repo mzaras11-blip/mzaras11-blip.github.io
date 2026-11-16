@@ -1,1 +1,77 @@
-{"items":[{"date":"2026-11-09","source":"TimeSaver / IGN","summary":"Take-Two's November 9 results list GTA VI for November 19 on PS5 and Xbox Series X|S, and CEO Strauss Zelnick told IGN it is not going to be delayed again.","tag":"OFFICIAL","title":"Launch date locked: Thursday, November 19, 2026","url":"https://timesaver.gg/blog/gta-6-delay"},{"date":"2026-11-10","source":"GTADB","summary":"Rockstar moved pre-load up to November 10 on PS5 and Xbox Series X|S. Boxed copies hold a download code (no disc) and reached stores November 12.","tag":"GUIDES","title":"Pre-load is live now — clear up to 212 GB","url":"https://gtadb.net/articles/gta-6-preload-november-10-2026-212-gb/"},{"date":"2026-11-05","source":"GameMapa / Rockstar Newswire","summary":"The latest Rockstar Newswire post (November 5) opens a launch gallery of new screenshots from Vice City and beyond, two weeks out from release.","tag":"OFFICIAL","title":"Rockstar posts the GTA VI Launch Gallery","url":"https://gamemapa.com/en/gta-6/news/gta-6-explore-the-grand-theft-auto-vi-launch-gallery/"},{"date":"2026-11-14","source":"CDKeyPrices News","summary":"Rockstar's Miami-flavoured Instagram campaign dropped a second in-game clip on November 14 — cars rounding a busy Vice City corner, days before launch.","tag":"VIDEO","title":"'Only in Dade' clips are real in-game footage","url":"https://mail.cdkeyprices.jp/news/gta-6-only-in-dade-videos-confirm-stunning-in-game-visuals"},{"date":"2026-11-10","source":"Hypebeast","summary":"Rockstar and PlayStation announced a one-day launch festival on November 21 at Mana Wynwood, Miami, with artists from the game's soundtrack.","tag":"NEWS","title":"GTA VI: The Festival brings the launch party to Miami","url":"https://hypebeast.com/2026/11/rockstar-games-playstation-announce-grand-theft-auto-vi-festival-miami-cactus-jack-travis-scott-don-toliver-cardi-b-justice"},{"date":"2026-11-11","source":"Geek Culture","summary":"Rockstar says the game is built to target 30 frames per second on PS5 and Xbox Series X|S while pushing visual density, with extra graphical improvements on PS5 Pro.","tag":"NEWS","title":"GTA VI targets 30 fps on consoles; PS5 Pro gets a ray-tracing bump","url":"https://geekculture.co/grand-theft-auto-vi-sets-30fps-cap-on-all-consoles/"},{"date":"2026-06-25","source":"GTASix","summary":"Pre-orders opened June 25, 2026. Ultimate adds 16 in-game items over Standard, and every order placed before November 20 gets the Vintage Vice City Pack.","tag":"GUIDES","title":"Editions explained: Standard $79.99 vs Ultimate $99.99","url":"https://gtasix.org/en/guide/editions/"}],"updated":"2026-11-15T13:00:00-05:00"}
+{
+  "items": [
+    {
+      "title": "Guardian hands-on: Jason and Lucia start small, and their bond is yours to keep or lose",
+      "summary": "The Guardian visited Rockstar North and saw the game played live: the pair begin with low-end cars and basic locks, plan heists carefully, and can nurture or neglect their relationship, which Rockstar calls a first attempt to encourage empathy in GTA.",
+      "source": "Notebookcheck / The Guardian",
+      "url": "https://www.notebookcheck.net/GTA-VI-is-the-first-Grand-Theft-Auto-built-to-encourage-empathy-says-Rockstar-but-it-won-t-punish-chaotic-players-either.1451049.0.html",
+      "date": "2026-11-15",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Free GTA VI codes up for grabs on Kick and Twitch",
+      "summary": "Kick is giving away 10,000 Ultimate Edition codes through its Sunset Reward cases until December 7 for viewers who watch streams, and Twitch runs a similar code giveaway from launch day, November 19, through November 30.",
+      "source": "ComicBook.com",
+      "url": "https://comicbook.com/gaming/news/gta-6-grand-theft-auto-vi-rockstar-games-free-codes/",
+      "date": "2026-11-15",
+      "tag": "NEWS"
+    },
+    {
+      "date": "2026-11-09",
+      "source": "TimeSaver / IGN",
+      "summary": "Take-Two's November 9 results list GTA VI for November 19 on PS5 and Xbox Series X|S, and CEO Strauss Zelnick told IGN it is not going to be delayed again.",
+      "tag": "OFFICIAL",
+      "title": "Launch date locked: Thursday, November 19, 2026",
+      "url": "https://timesaver.gg/blog/gta-6-delay"
+    },
+    {
+      "date": "2026-11-10",
+      "source": "GTADB",
+      "summary": "Rockstar moved pre-load up to November 10 on PS5 and Xbox Series X|S. Boxed copies hold a download code (no disc) and reached stores November 12.",
+      "tag": "GUIDES",
+      "title": "Pre-load is live now — clear up to 212 GB",
+      "url": "https://gtadb.net/articles/gta-6-preload-november-10-2026-212-gb/"
+    },
+    {
+      "date": "2026-11-05",
+      "source": "GameMapa / Rockstar Newswire",
+      "summary": "The latest Rockstar Newswire post (November 5) opens a launch gallery of new screenshots from Vice City and beyond, two weeks out from release.",
+      "tag": "OFFICIAL",
+      "title": "Rockstar posts the GTA VI Launch Gallery",
+      "url": "https://gamemapa.com/en/gta-6/news/gta-6-explore-the-grand-theft-auto-vi-launch-gallery/"
+    },
+    {
+      "date": "2026-11-14",
+      "source": "CDKeyPrices News",
+      "summary": "Rockstar's Miami-flavoured Instagram campaign dropped a second in-game clip on November 14 — cars rounding a busy Vice City corner, days before launch.",
+      "tag": "VIDEO",
+      "title": "'Only in Dade' clips are real in-game footage",
+      "url": "https://mail.cdkeyprices.jp/news/gta-6-only-in-dade-videos-confirm-stunning-in-game-visuals"
+    },
+    {
+      "date": "2026-11-10",
+      "source": "Hypebeast",
+      "summary": "Rockstar and PlayStation announced a one-day launch festival on November 21 at Mana Wynwood, Miami, with artists from the game's soundtrack.",
+      "tag": "NEWS",
+      "title": "GTA VI: The Festival brings the launch party to Miami",
+      "url": "https://hypebeast.com/2026/11/rockstar-games-playstation-announce-grand-theft-auto-vi-festival-miami-cactus-jack-travis-scott-don-toliver-cardi-b-justice"
+    },
+    {
+      "date": "2026-11-11",
+      "source": "Geek Culture",
+      "summary": "Rockstar says the game is built to target 30 frames per second on PS5 and Xbox Series X|S while pushing visual density, with extra graphical improvements on PS5 Pro.",
+      "tag": "NEWS",
+      "title": "GTA VI targets 30 fps on consoles; PS5 Pro gets a ray-tracing bump",
+      "url": "https://geekculture.co/grand-theft-auto-vi-sets-30fps-cap-on-all-consoles/"
+    },
+    {
+      "date": "2026-06-25",
+      "source": "GTASix",
+      "summary": "Pre-orders opened June 25, 2026. Ultimate adds 16 in-game items over Standard, and every order placed before November 20 gets the Vintage Vice City Pack.",
+      "tag": "GUIDES",
+      "title": "Editions explained: Standard $79.99 vs Ultimate $99.99",
+      "url": "https://gtasix.org/en/guide/editions/"
+    }
+  ],
+  "updated": "2026-11-15T19:05:26-05:00"
+}
