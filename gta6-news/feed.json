@@ -1,6 +1,14 @@
 {
-  "updated": "2026-11-16T19:07:09-05:00",
+  "updated": "2026-11-17T07:05:22-05:00",
   "items": [
+    {
+      "title": "Fans book days off as GTA VI launch week arrives",
+      "summary": "Reuters reports launch-day time-off requests running about 13% above a normal November day, with about a third of Gen Z workers surveyed planning to take Thursday off, and Newzoo estimating at least $3.25 billion in first-week sales.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/grand-theft-auto-vi-heads-launch-amid-feverish-anticipation-2026-11-17/",
+      "date": "2026-11-17",
+      "tag": "NEWS"
+    },
     {
       "title": "Six new screenshots show off Leonida's dynamic weather",
       "summary": "Rockstar gave The Weather Channel six new screenshots built around Leonida's weather — heavy rain in the Keys, sea fog over Vice City, a storm over the Pelican Valley swamps and a tropical storm at sea — and art VP Owen Shepherd says the system was rebuilt to feel localized, persistent and dynamic.",
@@ -112,14 +120,6 @@
       "tag": "VIDEO",
       "title": "'Only in Dade' clips are real in-game footage",
       "url": "https://mail.cdkeyprices.jp/news/gta-6-only-in-dade-videos-confirm-stunning-in-game-visuals"
-    },
-    {
-      "date": "2026-11-10",
-      "source": "Hypebeast",
-      "summary": "Rockstar and PlayStation announced a one-day launch festival on November 21 at Mana Wynwood, Miami, with artists from the game's soundtrack.",
-      "tag": "NEWS",
-      "title": "GTA VI: The Festival brings the launch party to Miami",
-      "url": "https://hypebeast.com/2026/11/rockstar-games-playstation-announce-grand-theft-auto-vi-festival-miami-cactus-jack-travis-scott-don-toliver-cardi-b-justice"
     }
   ]
 }
