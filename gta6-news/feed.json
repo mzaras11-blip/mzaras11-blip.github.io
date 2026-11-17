@@ -1,6 +1,22 @@
 {
-  "updated": "2026-11-16T13:06:39-05:00",
+  "updated": "2026-11-16T19:07:09-05:00",
   "items": [
+    {
+      "title": "Six new screenshots show off Leonida's dynamic weather",
+      "summary": "Rockstar gave The Weather Channel six new screenshots built around Leonida's weather — heavy rain in the Keys, sea fog over Vice City, a storm over the Pelican Valley swamps and a tropical storm at sea — and art VP Owen Shepherd says the system was rebuilt to feel localized, persistent and dynamic.",
+      "source": "RockstarINTEL / The Weather Channel",
+      "url": "https://rockstarintel.com/6-new-gta-6-screenshots-released-showing-dynamic-weather/",
+      "date": "2026-11-16",
+      "tag": "NEWS"
+    },
+    {
+      "title": "CNN calls GTA VI launch the year's biggest entertainment event",
+      "summary": "CNN's Reliable Sources frames Thursday's launch as arguably the biggest media and entertainment event of the year, citing Sensor Tower preorder data and IGN co-founder Peer Schneider's view that the only question is how big GTA VI will be, not whether it will be a hit.",
+      "source": "CNN",
+      "url": "https://www.cnn.com/2026/11/16/media/grand-theft-auto-gta-vi-entertainment-media?cid=external-feeds_iluminar_meta",
+      "date": "2026-11-16",
+      "tag": "NEWS"
+    },
     {
       "title": "GTA VI hacker pleads guilty in London, three days before launch",
       "summary": "Arion Kurtaj, 21, pleaded guilty at Woolwich Crown Court to the 2022 Rockstar hack that leaked dozens of unfinished GTA VI clips, plus other Lapsus$ offences; he will be sentenced later, and Rockstar put its recovery cost at $5 million.",
@@ -104,22 +120,6 @@
       "tag": "NEWS",
       "title": "GTA VI: The Festival brings the launch party to Miami",
       "url": "https://hypebeast.com/2026/11/rockstar-games-playstation-announce-grand-theft-auto-vi-festival-miami-cactus-jack-travis-scott-don-toliver-cardi-b-justice"
-    },
-    {
-      "date": "2026-11-11",
-      "source": "Geek Culture",
-      "summary": "Rockstar says the game is built to target 30 frames per second on PS5 and Xbox Series X|S while pushing visual density, with extra graphical improvements on PS5 Pro.",
-      "tag": "NEWS",
-      "title": "GTA VI targets 30 fps on consoles; PS5 Pro gets a ray-tracing bump",
-      "url": "https://geekculture.co/grand-theft-auto-vi-sets-30fps-cap-on-all-consoles/"
-    },
-    {
-      "date": "2026-06-25",
-      "source": "GTASix",
-      "summary": "Pre-orders opened June 25, 2026. Ultimate adds 16 in-game items over Standard, and every order placed before November 20 gets the Vintage Vice City Pack.",
-      "tag": "GUIDES",
-      "title": "Editions explained: Standard $79.99 vs Ultimate $99.99",
-      "url": "https://gtasix.org/en/guide/editions/"
     }
   ]
 }
