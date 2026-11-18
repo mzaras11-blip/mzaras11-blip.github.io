@@ -1,6 +1,22 @@
 {
-  "updated": "2026-11-18T07:05:58-05:00",
+  "updated": "2026-11-18T13:06:00-05:00",
   "items": [
+    {
+      "title": "VGC's beginner's guide: six tips for your first hours in Leonida",
+      "summary": "VGC's starter guide covers stashing cash under the floorboards in Jason's bedroom until the Buck Me mission opens a bank account, using the minimap to spot hidden rooms and enterable buildings, feeding Jason's snake for an early Focus buff, and calling a mechanic for roadside repairs once that unlocks.",
+      "source": "VGC",
+      "url": "https://www.videogameschronicle.com/guide/gta-6-beginners-guide-6-tips-you-need-to-know-before-starting-gta-6/",
+      "date": "2026-11-18",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "GameSpot picks five things to do first in GTA 6",
+      "summary": "GameSpot recommends buying a suppressor at the Key Lento Ammu-Nation, exploring Key Lento and clearing its side content before moving on, saving toward a garage once garages unlock, and not stressing about early money since the story drains both accounts in the first stretch.",
+      "source": "GameSpot",
+      "url": "https://www.gamespot.com/articles/5-best-things-to-do-first-in-gta-6/",
+      "date": "2026-11-18",
+      "tag": "GUIDES"
+    },
     {
       "title": "Reviews are in: GTA VI lands a 99 on Metacritic, tying the all-time record",
       "summary": "The review embargo lifted at 6 a.m. ET on November 18 and the first verdicts are near-unanimous: a 99 Metascore from 100 critic reviews on PS5, tying Ocarina of Time for the highest ever, and 98 on OpenCritic with every critic recommending it. IGN, GamesRadar+, VGC and The Guardian are among the perfect scores, with the locked 30fps target the most common complaint.",
@@ -102,22 +118,6 @@
       "summary": "Rockstar gave The Weather Channel six new screenshots built around Leonida's weather — heavy rain in the Keys, sea fog over Vice City, a storm over the Pelican Valley swamps and a tropical storm at sea — and art VP Owen Shepherd says the system was rebuilt to feel localized, persistent and dynamic.",
       "source": "RockstarINTEL / The Weather Channel",
       "url": "https://rockstarintel.com/6-new-gta-6-screenshots-released-showing-dynamic-weather/",
-      "date": "2026-11-16",
-      "tag": "NEWS"
-    },
-    {
-      "title": "CNN calls GTA VI launch the year's biggest entertainment event",
-      "summary": "CNN's Reliable Sources frames Thursday's launch as arguably the biggest media and entertainment event of the year, citing Sensor Tower preorder data and IGN co-founder Peer Schneider's view that the only question is how big GTA VI will be, not whether it will be a hit.",
-      "source": "CNN",
-      "url": "https://www.cnn.com/2026/11/16/media/grand-theft-auto-gta-vi-entertainment-media?cid=external-feeds_iluminar_meta",
-      "date": "2026-11-16",
-      "tag": "NEWS"
-    },
-    {
-      "title": "GTA VI hacker pleads guilty in London, three days before launch",
-      "summary": "Arion Kurtaj, 21, pleaded guilty at Woolwich Crown Court to the 2022 Rockstar hack that leaked dozens of unfinished GTA VI clips, plus other Lapsus$ offences; he will be sentenced later, and Rockstar put its recovery cost at $5 million.",
-      "source": "Engadget / BBC",
-      "url": "https://www.engadget.com/2318001/gta-6-hacker-pleads-guilty-to-stealing-and-leaking-gameplay-footage/",
       "date": "2026-11-16",
       "tag": "NEWS"
     }
