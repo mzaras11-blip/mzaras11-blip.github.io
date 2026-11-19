@@ -7859,7 +7859,7 @@ const okHP = await shareInviteText(text);
       }
       .aj-confetti { position: fixed; pointer-events: none; width: 10px; height: 14px; border-radius: 2px; }
 
-      .score .pts.aj-pulse { display: inline-block; animation: ajPulse .45s cubic-bezier(.34, 1.56, .64, 1); }
+      .score .pts.aj-pulse, #ptsYou.aj-pulse, #ptsCpu.aj-pulse { display: inline-block; animation: ajPulse .45s cubic-bezier(.34, 1.56, .64, 1); }
       @keyframes ajPulse {
         0% { transform: scale(1); }
         40% { transform: scale(1.28); }
@@ -7901,7 +7901,7 @@ const okHP = await shareInviteText(text);
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .aj-tag, .score .pts.aj-pulse, #gameScreen.aj-shake, #ajBanner.show { animation: none !important; }
+        .aj-tag, .score .pts.aj-pulse, #ptsYou.aj-pulse, #ptsCpu.aj-pulse, #gameScreen.aj-shake, #ajBanner.show { animation: none !important; }
       }
     </style>
     <script>
@@ -7933,6 +7933,7 @@ const okHP = await shareInviteText(text);
           lastCombo = (g.rush && g.rush.combo) ? [g.rush.combo[0] || 1, g.rush.combo[1] || 1] : [1, 1];
           seenWords = new Set(g.completedWords || []);
         }
+        function cwSize(g) { try { return (g.completedWords && g.completedWords.size != null) ? g.completedWords.size : (g.completedWords || []).length; } catch (e) { return 0; } }
         function layer() {
           let l = $id("ajLayer");
           if (!l) {
@@ -7980,6 +7981,7 @@ const okHP = await shareInviteText(text);
           f.style.top = from.y + "px";
           layer().appendChild(f);
           let flown = false;
+          if (layer().childElementCount > 70) { f.remove(); pulse(by); return; }
           try {
             const anim = f.animate([
               { transform: "translate(-50%, -50%) scale(.6)", opacity: 0 },
@@ -7998,6 +8000,7 @@ const okHP = await shareInviteText(text);
           const L = layer();
           if (L.childElementCount > 70) return;
           for (let i = 0; i < n; i++) {
+            if (L.childElementCount > 80) break;
             const s = document.createElement("span");
             s.className = "aj-spark";
             s.style.left = at.x + "px";
@@ -8078,6 +8081,7 @@ const okHP = await shareInviteText(text);
         /* Win complement: a DOM confetti volley in brand colors,
            fired after Juice's canvas bursts (never instead of). */
         function confettiVolley() {
+          if (!animOn() || reduced() || !inGame()) return;
           const L = layer();
           const cx = window.innerWidth / 2;
           for (let i = 0; i < 26; i++) {
@@ -8109,6 +8113,7 @@ const okHP = await shareInviteText(text);
           const g = game();
           if (!g) return;
           if (seenG !== g) { seenG = g; rebaseline(g); return; }
+          if (cwSize(g) < seenWords.size) { rebaseline(g); return; }
           const gained = g.scores[by] - lastScores[by];
           const newWords = [];
           try {
