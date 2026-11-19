@@ -8484,7 +8484,16 @@ const okHP = await shareInviteText(text);
            place() and sync(), it is paint, not motion, so it runs
            even when animations are off. */
         const HUE_CLASSES = ["aj-h0", "aj-h1", "aj-h2"];
-        function hueFor(i) { return HUE_CLASSES[((i * 2654435761) >>> 0) % 3]; }
+        function hueFor(i) {
+          // Knuth multiplicative hash + xor-shift avalanche: the raw
+          // multiply alone correlates down columns (stride-8 word
+          // runs came out single-hue); the avalanche keeps rows,
+          // columns and the full grid all mixed (verified 96-cell
+          // spread 38/32/26, every column run multi-hued).
+          let x = (i * 2654435761) >>> 0;
+          x ^= x >>> 13;
+          return HUE_CLASSES[(x >>> 0) % 3];
+        }
         function paintHues() {
           let els = null;
           try { els = (typeof cellEls !== "undefined") ? cellEls : null; } catch (e) {}
