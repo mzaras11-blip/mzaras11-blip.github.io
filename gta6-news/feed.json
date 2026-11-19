@@ -1,6 +1,38 @@
 {
-  "updated": "2026-11-19T01:06:44-05:00",
+  "updated": "2026-11-19T07:05:31-05:00",
   "items": [
+    {
+      "title": "Launch day in America: GTA VI is live, and the live blog is rolling",
+      "summary": "USA Today's launch-day live coverage follows the US unlock seconds after midnight ET on November 19, with Sensor Tower estimating $1.65 billion in presales from 17.07 million copies (74% on PS5), first-hour impressions from Vice City, and launch-week food deals including Popeyes' Spice City Sandwich and Subway's Vice City Cubano running through November 22.",
+      "source": "USA TODAY",
+      "url": "https://www.usatoday.com/story/tech/gaming/2026/11/19/gta-6-live-updates--live/92811863007/",
+      "date": "2026-11-19",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Polygon's cheat guide: GTA VI's cheats stay locked until you beat the story",
+      "summary": "Polygon's launch-day guide explains that a Cheats menu only appears in the Progression tab after you finish the campaign, each cheat sits behind its own unlock condition (with progress made before the credits counting), codes are entered on the phone by holding L1 and R1 and tapping a D-pad sequence, and turning one on disables saving and achievements for the rest of that session.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-cheat-codes-list-unlock/",
+      "date": "2026-11-19",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "'Grand Theft Callout': nearly one in five US workers plan to take launch day off",
+      "summary": "MarketWatch reports BambooHR data showing 18% of American workers plan to take November 19 off to play GTA VI, with paid-time-off requests running 13% higher than on comparable days, while Logitech is giving staff its first company-wide 'Game Day' and car-buying platform Delivrd is giving employees Friday off to enjoy the launch.",
+      "source": "MarketWatch",
+      "url": "https://www.marketwatch.com/story/grand-theft-callout-gta-6-fans-are-missing-work-on-the-games-release-day-because-they-dont-want-to-wait-anymore-5f2fa2e3",
+      "date": "2026-11-18",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Won't start on PS5? A required system update is the first fix to check",
+      "summary": "Men's Journal walks through PlayStation's required PS5 system software update 26.07-14.23.00, which Sony says must be installed before GTA VI will play, plus checking for game update 01.002.001 (about 602 MB), confirming up to 212 GB of free space, and what to try if PlayStation Network sign-in fails.",
+      "source": "Men's Journal",
+      "url": "https://www.mensjournal.com/news/gta-6-not-working-ps5-mandatory-update-psn-fix",
+      "date": "2026-11-18",
+      "tag": "GUIDES"
+    },
     {
       "title": "PlayStation Network buckles under GTA VI launch-eve demand",
       "summary": "Polygon reports PS5 players ran into login failures, 'services are busy' messages and stalled downloads on November 18 as the pre-load and update rush hit Sony's servers, with Downdetector logging a sharp spike in outage reports even while Sony's own status page listed the network as healthy.",
@@ -87,38 +119,6 @@
       "source": "Reuters",
       "url": "https://www.mix1069.com/2026/11/18/rockstar-promotes-gta-vi-in-china-despite-lack-of-sales-approval/",
       "date": "2026-11-18",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Launch day arrives after a 13-year wait, with a new cast name confirmed",
-      "summary": "The Associated Press marks GTA VI becoming playable at midnight local time on Thursday, starting in New Zealand, where provider Chorus expects about 35 petabytes of extra traffic from the 212 GB download; actor Stephen Root also confirmed to AP that he appears in the game, though Rockstar has not identified his role.",
-      "source": "Associated Press",
-      "url": "https://www.theheraldreview.com/entertainment/article/after-a-13-year-wait-grand-theft-auto-vi-22536861.php",
-      "date": "2026-11-18",
-      "tag": "NEWS"
-    },
-    {
-      "title": "GTA Online players plan a 'last ride' through Los Santos on launch eve",
-      "summary": "Le Monde reports GTA Online regulars will gather on the evening of November 18 for a final group drive through Los Santos hours before GTA VI launches, with the Grand Theft Hamlet creators reuniting their troupe; GTA VI launches single-player only, so the old Online — estimated at over 20 million monthly players in 2024 — is not shutting down.",
-      "source": "Le Monde",
-      "url": "https://www.lemonde.fr/en/pixels/article/2026/11/18/gta-online-ahead-of-gta-vi-release-online-players-prep-for-last-ride_6783031_13.html",
-      "date": "2026-11-18",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Rockstar tribunal reaches closing submissions in Glasgow, two days before launch",
-      "summary": "Claimants' lawyers told a Glasgow employment tribunal on November 17 that Rockstar's 2025 dismissals of 34 workers were 'shock and awe' tactics over union organizing, while Rockstar's written submissions call them fair dismissals for misconduct; Rockstar's closing is due November 18, no ruling date has been set, and a separate UK union recognition vote runs to November 26.",
-      "source": "stupidDOPE",
-      "url": "https://stupiddope.com/2026/11/rockstars-gta-vi-tribunal-reaches-closing-submissions-in-glasgow-as-the-union-vote-runs-through-launch-week/",
-      "date": "2026-11-17",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Justice say GTA VI will probably be their first and last video game score",
-      "summary": "In an interview translated by Eurogamer, GTA VI composers Justice — Gaspard Augé and Xavier de Rosnay — say they took the job thinking it would likely be the only game score they ever do, and that the music had to stand up on its own outside the game as well as in it.",
-      "source": "Shacknews",
-      "url": "https://www.shacknews.com/article/151376/grand-theft-auto-6-justice-last-game",
-      "date": "2026-11-17",
       "tag": "NEWS"
     }
   ]
