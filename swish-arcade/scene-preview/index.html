@@ -10326,9 +10326,10 @@ const okHP = await shareInviteText(text);
           const tool = (rect, el, label) => {
             c.save(); c.globalAlpha = dis(el) ? 0.45 : 1;
             roundRectPath(c, rect.x, rect.y, rect.w, rect.h, 11);
+            c.fillStyle = "rgba(10,14,26,0.62)"; c.fill();
             c.fillStyle = "rgba(255,255,255,0.10)"; c.fill();
-            c.lineWidth = 1.5; c.strokeStyle = "rgba(255,255,255,0.25)"; c.stroke();
-            c.font = "600 12.5px Arial"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillStyle = "#FFF";
+            c.lineWidth = 1.5; c.strokeStyle = "rgba(255,255,255,0.55)"; c.stroke();
+            c.font = "700 12.5px Arial"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillStyle = "#FFF";
             c.fillText(label, rect.cx, rect.cy + 0.5);
             c.restore();
           };
@@ -10342,9 +10343,21 @@ const okHP = await shareInviteText(text);
             c.beginPath(); c.arc(L.chat.x + L.chat.w - 8, L.chat.y + 7, 4, 0, 6.283);
             c.fillStyle = "#F2607E"; c.fill();
           }
-          c.font = "600 12px Arial"; c.textAlign = "center"; c.textBaseline = "middle";
-          c.fillStyle = "rgba(255,130,130,0.75)";
-          c.fillText("Forfeit game", L.forfeit.cx, L.forfeit.cy);
+          // forfeit: solid danger pill — bare pale text washed out on the
+          // painted background; same pill family as the tool buttons.
+          const fb = $("#forfeitBtn");
+          c.save(); c.globalAlpha = dis(fb) ? 0.45 : 1;
+          c.font = "700 13px Arial"; c.textAlign = "center"; c.textBaseline = "middle";
+          const fpw = c.measureText("Forfeit game").width + 38;
+          const fph = Math.min(30, L.forfeit.h);
+          const fg = c.createLinearGradient(0, L.forfeit.cy - fph / 2, 0, L.forfeit.cy + fph / 2);
+          fg.addColorStop(0, "#8D3231"); fg.addColorStop(1, "#5B1013");
+          roundRectPath(c, L.forfeit.cx - fpw / 2, L.forfeit.cy - fph / 2, fpw, fph, fph / 2);
+          c.fillStyle = fg; c.fill();
+          c.lineWidth = 1.5; c.strokeStyle = "rgba(255,190,190,0.65)"; c.stroke();
+          c.fillStyle = "#FFF";
+          c.fillText("Forfeit game", L.forfeit.cx, L.forfeit.cy + 0.5);
+          c.restore();
         }
 
         /* ---------------- screen-space effects ---------------- */
