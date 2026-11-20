@@ -8822,14 +8822,21 @@ const okHP = await shareInviteText(text);
           const a = av[side];
           if (!a || !AV_FACES[side][expr] || a.flashing) return;
           if (!animOn() || reduced()) return;
-          a.flashing = true;
-          const prev = a.img.src;
-          a.img.src = AV_FACES[side][expr];
+          a.flashing = true; // reserve now; the face lands 120 ms
+          // later, just after the game's own FACES reaction for the
+          // same event, so the game's flash cannot clobber this one
+          // within a frame or two; prev is captured at landing time,
+          // so the restore hands back the game's own face.
           if (a.flashT) clearTimeout(a.flashT);
           a.flashT = setTimeout(() => {
-            a.flashing = false;
-            if (a.img.src === AV_FACES[side][expr]) a.img.src = prev;
-          }, ms);
+            if (!animOn() || reduced()) { a.flashing = false; return; }
+            const prev = a.img.src;
+            a.img.src = AV_FACES[side][expr];
+            a.flashT = setTimeout(() => {
+              a.flashing = false;
+              if (a.img.src === AV_FACES[side][expr]) a.img.src = prev;
+            }, ms);
+          }, 120);
         }
         /* Performed reaction on the wrap. WAAPI replaces the life
            loop while it runs; when it ends the loop takes the face
