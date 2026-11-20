@@ -9309,6 +9309,23 @@ const okHP = await shareInviteText(text);
       body.asc-on #gameScreen #board,
       body.asc-on #gameScreen #rack,
       body.asc-on #gameScreen .controls { opacity: 0; }
+      /* The hidden DOM layer still PAINTS under the canvas (opacity 0
+         keeps hit targets alive), and its per-cell shadows, filters and
+         CSS animations are the most expensive invisible paint on a
+         phone. Strip the paint cost, keep the geometry and the hit
+         testing exactly as shipped. */
+      body.asc-on #gameScreen .hud-top, body.asc-on #gameScreen .hud-top *,
+      body.asc-on #gameScreen .scoreboard, body.asc-on #gameScreen .scoreboard *,
+      body.asc-on #gameScreen .timerbar, body.asc-on #gameScreen .timerbar *,
+      body.asc-on #gameScreen #rushBar, body.asc-on #gameScreen #rushBar *,
+      body.asc-on #gameScreen #statusLine, body.asc-on #gameScreen #statusLine *,
+      body.asc-on #gameScreen #board, body.asc-on #gameScreen #board *,
+      body.asc-on #gameScreen #rack, body.asc-on #gameScreen #rack *,
+      body.asc-on #gameScreen .controls, body.asc-on #gameScreen .controls * {
+        box-shadow: none !important; text-shadow: none !important;
+        filter: none !important; backdrop-filter: none !important;
+        animation: none !important; transition: none !important;
+      }
       body.asc-on #board { transform: none !important; }
       body.asc-on .aj-av-wrap { animation: none !important; transform: none !important; }
       body.asc-on #ajLayer, body.asc-on #ajAmbient, body.asc-on #ajBanner,
@@ -9476,7 +9493,7 @@ const okHP = await shareInviteText(text);
 
         /* ---------------- layout (measured from the live DOM) ---------------- */
         const gsEl = () => $("#gameScreen");
-        let L = null, lastG = null, clueCache = [];
+        let L = null, lastG = null, clueCache = [], clueDirty = true;
         function rectRel(el, origin) {
           const r = el.getBoundingClientRect();
           return { x: r.left - origin.left, y: r.top - origin.top, w: r.width, h: r.height, cx: r.left - origin.left + r.width / 2, cy: r.top - origin.top + r.height / 2 };
@@ -9510,14 +9527,21 @@ const okHP = await shareInviteText(text);
             hint: rectRel($("#hintBtn"), o), boost: rectRel($("#boostBtn"), o),
             chat: rectRel($("#chatBtn"), o), forfeit: rectRel($("#forfeitBtn"), o)
           };
-          // clue content cache (arrow / text / picture) straight from the DOM cells
-          clueCache = [];
-          for (let i = 0; i < cellEls.length; i++) {
-            const el = cellEls[i];
-            const pic = el.querySelector ? el.querySelector(".pic") : null;
-            const txt = el.querySelector ? el.querySelector(".ctext") : null;
-            const arr = el.querySelector ? el.querySelector(".arrow") : null;
-            clueCache.push({ pic: pic ? pic.textContent : null, txt: txt ? txt.textContent : null, arr: arr ? arr.textContent : "" });
+          // clue content cache (arrow / text / picture) straight from the
+          // DOM cells — rebuilt ONLY when the puzzle changes (clueDirty,
+          // set by frameDiff on a new game). Rebuilding it on every
+          // periodic measure cost ~288 querySelector calls and hitched
+          // play every 90 frames.
+          if (clueDirty) {
+            clueDirty = false;
+            clueCache = [];
+            for (let i = 0; i < cellEls.length; i++) {
+              const el = cellEls[i];
+              const pic = el.querySelector ? el.querySelector(".pic") : null;
+              const txt = el.querySelector ? el.querySelector(".ctext") : null;
+              const arr = el.querySelector ? el.querySelector(".arrow") : null;
+              clueCache.push({ pic: pic ? pic.textContent : null, txt: txt ? txt.textContent : null, arr: arr ? arr.textContent : "" });
+            }
           }
           boardDirty = true; bgCv = null; gradCache = {};
           return true;
@@ -9525,8 +9549,11 @@ const okHP = await shareInviteText(text);
 
         /* ---------------- virtual camera ----------------
            Pose: s scale, fx/fy focus (board-local px), rx tilt deg, rz dutch
-           deg, tx/ty pan px. Tracks are keyframed poses sampled per frame;
-           priority sweep > slam > punch > reframe; rest is a living drift. */
+           deg, tx/ty pan px. Tracks are keyframed poses sampled per frame.
+           CALM RULE (owner, 2026-11-19): tracks run ONLY for celebration
+           beats — word-complete slam (prio 3), long-word and win sweeps
+           (prio 4). No rest drift, no placement punch, no turn reframe:
+           during normal play the pose is exactly the rest pose. */
         const REST = { s: 1, rx: 4, rz: 0, tx: 0, ty: 0 };
         let camAnim = null, camPrio = 0;
         function boardCenter() { return L ? { x: L.board.w / 2, y: L.board.h / 2 } : { x: 0, y: 0 }; }
@@ -9540,11 +9567,11 @@ const okHP = await shareInviteText(text);
         function camSample(now) {
           const rp = restPose();
           if (!camAnim) {
-            // living rest: the camera breathes and wanders, never dead static
-            const t = now / 1000;
-            camPose = { s: rp.s * (1 + 0.008 * Math.sin(t * 0.55)), fx: rp.fx, fy: rp.fy,
-              rx: rp.rx + 0.7 * Math.sin(t * 0.42), rz: 0.25 * Math.sin(t * 0.31),
-              tx: 3 * Math.sin(t * 0.37), ty: 2 * Math.sin(t * 0.29) };
+            // calm rest (owner, 2026-11-19): no drift, no breathing —
+            // during play the board sits perfectly still. The camera
+            // moves ONLY on celebration beats (the word-complete slam
+            // and the win sweep), which run through camAnim.
+            camPose = rp;
             return camPose;
           }
           const a = camAnim, el = now - a.t0;
@@ -9674,13 +9701,8 @@ const okHP = await shareInviteText(text);
               if (G.completedWords) G.completedWords.forEach((w) => { if (!before.words.has(w)) newWord = w; });
               if (newWord >= 0) { prevWords = new Set(G.completedWords); onWordComplete(newWord, by); }
               else {
-                if (L && L.cells[cell]) {
-                  const cc = cellBoardLocal(cell), rp = camPose || restPose();
-                  camStart(2, 420, [
-                    { at: 0, pose: { ...rp } },
-                    { at: 180, pose: { s: 1.17, fx: cc.x, fy: cc.y, rx: 6.5, rz: 0.8, tx: 0, ty: 0 }, ease: easeOut },
-                    { at: 420, pose: restPose(), ease: easeInOut }]);
-                }
+                // no placement punch (calm rule): a plain placement
+                // never moves the camera; avatar pops still fire.
                 if (delta > 0 && by === 1) avReact("cpu", "smug", 1300);
                 if (delta > 0 && by === 0) AV.you.pop = now;
               }
@@ -9715,13 +9737,8 @@ const okHP = await shareInviteText(text);
             _sync.call(ArcadeJuice);
             try {
               if (!active || typeof G === "undefined" || !G) return;
-              if (G.current !== before && !G.gameOver) {
-                const rp = camPose || restPose();
-                camStart(1, 850, [
-                  { at: 0, pose: { ...rp } },
-                  { at: 380, pose: { ...rp, s: G.current === 1 ? 0.935 : 0.96 }, ease: easeInOut },
-                  { at: 850, pose: restPose(), ease: easeInOut }]);
-              }
+              // no turn-change reframe (calm rule): the camera holds
+              // the rest pose across turn changes.
               prevCurrent = G.current || 0;
             } catch (e) {}
           };
@@ -9732,7 +9749,7 @@ const okHP = await shareInviteText(text);
         function frameDiff(now) {
           if (typeof G === "undefined" || !G || !G.filled) { prevFilled = null; return; }
           if (lastG !== G) {
-            lastG = G; prevFilled = G.filled.slice();
+            lastG = G; clueDirty = true; prevFilled = G.filled.slice();
             prevWords = new Set(G.completedWords || []); prevCurrent = G.current || 0;
             dispScore = [G.scores[0] || 0, G.scores[1] || 0];
             return;
@@ -9772,7 +9789,7 @@ const okHP = await shareInviteText(text);
         function drawBoard(now) {
           const flashActive = wordFlash && now - wordFlash.t0 < 650;
           if (!boardDirty && !flashActive && now > boardAnimUntil) return;
-          boardDirty = false;
+          boardDirty = false; boardVer++;
           const w = L.board.w, h = L.board.h;
           if (boardCv.width !== Math.round(w * DPR) || boardCv.height !== Math.round(h * DPR)) {
             boardCv.width = Math.round(w * DPR); boardCv.height = Math.round(h * DPR);
@@ -9935,6 +9952,30 @@ const okHP = await shareInviteText(text);
           c.restore();
         }
 
+        /* The warped board composite (30 slice draws + a radial-gradient
+           shadow, rebuilt from scratch every frame before) is cached:
+           it changes only when the board redraws (boardVer) or the
+           camera pose actually moves. Under the calm rule the pose is
+           fixed during play, so the composite is a single blit; during
+           a slam the pose changes per frame and the cache simply
+           re-renders, same cost as before for those ~2 s. */
+        let boardVer = 0, compCv = null, compCtx = null, compKey = "";
+        function compositeCached(c, cam) {
+          const key = boardVer + "|" + cam.s.toFixed(3) + "|" + cam.fx.toFixed(1) + "|" + cam.fy.toFixed(1) + "|" +
+            cam.rx.toFixed(2) + "|" + cam.rz.toFixed(2) + "|" + cam.tx.toFixed(1) + "|" + cam.ty.toFixed(1) + "|" + DPR;
+          const W = Math.round(L.w * DPR), H = Math.round(L.h * DPR);
+          if (!compCv) { compCv = document.createElement("canvas"); compCtx = compCv.getContext("2d"); }
+          if (compCv.width !== W || compCv.height !== H) { compCv.width = W; compCv.height = H; compKey = ""; }
+          if (key !== compKey) {
+            compKey = key;
+            compCtx.setTransform(1, 0, 0, 1, 0, 0);
+            compCtx.clearRect(0, 0, W, H);
+            compCtx.setTransform(DPR, 0, 0, DPR, 0, 0);
+            compositeBoard(compCtx, cam);
+          }
+          c.drawImage(compCv, 0, 0, L.w, L.h);
+        }
+
         /* ---------------- world layers ---------------- */
         let seed = 7;
         const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
@@ -10050,26 +10091,63 @@ const okHP = await shareInviteText(text);
           c.fillText(text, r.x + r.w / 2, r.y + r.h / 2 + 0.5);
           c.restore();
         }
-        /* Avatar layout (owner-specified, 2026-11-19): the circles keep
-           their exact size — R from the panel height, clamped 30..42 —
-           but are seated on the panel's OUTER edge (centre on the edge,
-           upper third), so the disc overlaps the panel corner and the
-           screen-outer side, never the panel interior. Name + score live
-           in the clear column AV_COL px in from that edge: the disc's
-           maximum reach from its centre is R*1.22 (pop) + 4 (glow) ≈ 56,
-           and at the name/score rows the chord is shorter still, so text
-           at AV_COL can never be covered — even mid-reaction. */
+        /* Avatar layout (owner-specified, 2026-11-19; anchoring fixed
+           same night after real-phone play): the circles keep their
+           exact size — R from the panel height, clamped 30..42 — seated
+           on the panel's OUTER edge (centre on the edge, upper third),
+           so the disc overlaps the panel corner, never the panel
+           interior. BUT the centre is clamped so the FULL disc —
+           worst-case reach R*1.22 (reaction pop) + 4 (glow halo) —
+           stays inside the screen on every viewport and at every
+           camera state (the HUD layer is screen-space; the camera
+           never moves it). On a 390-wide phone the unclamped centre
+           put ~45 px of disc off-screen; the clamp slides the centre
+           inward only as far as needed, and the name/score column
+           (avTextCol) moves with it: the column starts beyond the
+           disc's chord at the name and score rows, so text can never
+           be covered — even mid-reaction. AV_COL remains the floor
+           for wide viewports, where nothing changes. */
         const AV_COL = 70;
         function avGeom(who) {
           const p = who === "you" ? L.pYou : L.pCpu;
           if (!p) return null;
           const R = clamp(p.h * 0.66, 30, 42);
-          return { p, R, cx: who === "you" ? p.x - 2 : p.x + p.w + 2, cy: p.y + 30 };
+          const EXT = R * 1.22 + 4;
+          let cx = who === "you" ? p.x - 2 : p.x + p.w + 2;
+          let cy = p.y + 30;
+          cx = clamp(cx, EXT + 1, Math.max(EXT + 1, L.w - EXT - 1));
+          cy = clamp(cy, EXT + 1, Math.max(EXT + 1, L.h - EXT - 1));
+          return { p, R, EXT, cx, cy };
         }
+        function avTextCol(who, geo) {
+          const { p, cx, cy, EXT } = geo;
+          // text rows in screen space: name centre ≈ p.y + 9 (drawn at
+          // p.y + 2, 13 px font), score centre ≈ p.y + p.h − 21
+          // (alphabetic baseline p.y + p.h − 10, 30 px font).
+          let reach = 0;
+          for (const ry of [p.y + 9, p.y + p.h - 21]) {
+            const dy = Math.abs(ry - cy);
+            if (dy < EXT) reach = Math.max(reach, Math.sqrt(EXT * EXT - dy * dy));
+          }
+          const col = who === "you" ? (cx + reach) - p.x + 6 : (p.x + p.w) - (cx - reach) + 6;
+          return Math.max(AV_COL, col);
+        }
+        /* fitFont results are cached: the same handful of strings
+           (names, scores, labels) is re-fitted every frame otherwise,
+           and measureText shrink loops are pure waste on repeat text. */
+        const fontCache = new Map();
         function fitFont(c, text, maxW, weight, size, family) {
-          let s = size;
-          c.font = weight + " " + s + "px " + family;
-          while (s > 9 && c.measureText(text).width > maxW) { s -= 1; c.font = weight + " " + s + "px " + family; }
+          const key = text + "|" + Math.round(maxW) + "|" + weight + "|" + size + "|" + family;
+          let s = fontCache.get(key);
+          if (s === undefined) {
+            s = size;
+            c.font = weight + " " + s + "px " + family;
+            while (s > 9 && c.measureText(text).width > maxW) { s -= 1; c.font = weight + " " + s + "px " + family; }
+            if (fontCache.size > 400) fontCache.clear();
+            fontCache.set(key, s);
+          } else {
+            c.font = weight + " " + s + "px " + family;
+          }
           return s;
         }
         function drawAvatar(c, who, now) {
@@ -10086,15 +10164,16 @@ const okHP = await shareInviteText(text);
           c.beginPath(); c.arc(cx, cy, R * sc, 0, 6.283); c.clip();
           const src = avSource(who);
           if (src) {
-            /* Video frames land in a small per-avatar cache at roughly
-               the clip's own rate; the main canvas blits the cache, so
-               the expensive video->canvas transfer happens ~18x/s per
-               avatar instead of once per display frame. */
+            /* Video frames land in a small per-avatar cache at the
+               clip's own rate (the clips are 15 fps); the main canvas
+               blits the cache, so the expensive video->canvas transfer
+               happens ~15x/s per avatar instead of once per display
+               frame — and never for a duplicate frame. */
             const cache = avCache[who];
             const isVid = src.tagName === "VIDEO";
             const ct = isVid ? src.currentTime : -2;
             if (cache.cv.width !== 168) { cache.cv.width = 168; cache.cv.height = 168; }
-            if (!isVid || Math.abs(ct - cache.t) > 0.055) {
+            if (!isVid || Math.abs(ct - cache.t) > 0.062) {
               const cc = cache.cv.getContext("2d");
               const sw = src.videoWidth || src.naturalWidth || 216, sh = src.videoHeight || src.naturalHeight || 216;
               const cs = Math.min(sw, sh);
@@ -10139,24 +10218,26 @@ const okHP = await shareInviteText(text);
           }
           drawAvatar(c, "you", now); drawAvatar(c, "cpu", now);
           // Name + score in the clear column (see the avGeom note): the
-          // disc can never reach this column, at rest or mid-pop, and the
-          // text is painted after the avatars regardless.
+          // column follows the clamped disc, so the disc can never reach
+          // the text, at rest or mid-pop, and the text is painted after
+          // the avatars regardless.
           for (const who of ["you", "cpu"]) {
             const p = who === "you" ? L.pYou : L.pCpu;
             const idx = who === "you" ? 0 : 1;
+            const col = avTextCol(who, avGeom(who));
             const whoEl = $(who === "you" ? "#scoreYou .who" : "#scoreCpu .who");
             const name = ((whoEl && whoEl.textContent) || (who === "you" ? "You" : "CPU")).replace(/\s+/g, " ").trim().toUpperCase();
-            const maxW = p.w - AV_COL - 8;
+            const maxW = p.w - col - 8;
             fitFont(c, name, maxW, "800", 13, "Arial");
             c.fillStyle = "rgba(255,255,255,0.92)"; c.textBaseline = "top";
-            if (who === "you") { c.textAlign = "left"; c.fillText(name, p.x + AV_COL, p.y - 8 + 10); }
-            else { c.textAlign = "right"; c.fillText(name, p.x + p.w - AV_COL, p.y - 8 + 10); }
+            if (who === "you") { c.textAlign = "left"; c.fillText(name, p.x + col, p.y - 8 + 10); }
+            else { c.textAlign = "right"; c.fillText(name, p.x + p.w - col, p.y - 8 + 10); }
             const sTxt = String(Math.round(dispScore[idx]));
             fitFont(c, sTxt, maxW, "900", 30, "'Arial Black', Arial");
             c.textBaseline = "alphabetic";
             c.fillStyle = who === "you" ? "#FFD60A" : "#FDA4AF";
-            if (who === "you") { c.textAlign = "left"; c.fillText(sTxt, p.x + AV_COL, p.y + p.h - 10); }
-            else { c.textAlign = "right"; c.fillText(sTxt, p.x + p.w - AV_COL, p.y + p.h - 10); }
+            if (who === "you") { c.textAlign = "left"; c.fillText(sTxt, p.x + col, p.y + p.h - 10); }
+            else { c.textAlign = "right"; c.fillText(sTxt, p.x + p.w - col, p.y + p.h - 10); }
             if (typeof G !== "undefined" && G && G.scores[0] !== G.scores[1] &&
                 ((idx === 0 && G.scores[0] > G.scores[1]) || (idx === 1 && G.scores[1] > G.scores[0]))) {
               c.font = "16px serif"; c.textBaseline = "top"; c.textAlign = "left";
@@ -10421,7 +10502,7 @@ const okHP = await shareInviteText(text);
           const t1 = performance.now();
           drawBoard(now);
           const t2 = performance.now();
-          compositeBoard(ctx, cam);
+          compositeCached(ctx, cam);
           const t3 = performance.now();
           drawRack(ctx, now);
           drawPop(ctx, now);
@@ -10433,12 +10514,13 @@ const okHP = await shareInviteText(text);
           drawDrag(ctx);
           PROF.bg += t1 - t0; PROF.board += t2 - t1; PROF.comp += t3 - t2; PROF.hud += t4 - t3; PROF.fx += performance.now() - t4; PROF.n++;
         }
-        /* Quiet-state detection: at rest the only motion is the slow
-           camera drift and the idle avatar clips, so redrawing at full
-           rAF rate burns compositing budget for nothing. When nothing is
-           animating (no camera move, no effects, board clean, scores
-           settled, timer unchanged) renders are capped at ~20/s; any
-           event makes the state non-quiet and full rate resumes. */
+        /* Quiet-state detection: at rest the only motion is the idle
+           avatar clips (15 fps — the camera no longer drifts), so
+           redrawing at full rAF rate burns compositing budget for
+           nothing. When nothing is animating (no camera move, no
+           effects, board clean, scores settled, timer unchanged)
+           renders are capped at ~15/s, the clips' own rate; any event
+           makes the state non-quiet and full rate resumes. */
         let lastRenderAt = 0, lastTimerTxt = "", lastTimerFrac = -1;
         function sceneQuiet(now) {
           if (camAnim || ribbon || pop || particles.length || tags.length) return false;
@@ -10462,7 +10544,11 @@ const okHP = await shareInviteText(text);
           avTick(now);
           frameDiff(now);
           frameNo++;
-          if (measureDirty || frameNo % 90 === 0) {
+          if (!measureDirty && L) {
+            const gs0 = gsEl();
+            if (gs0 && (Math.abs(gs0.clientWidth - L.w) > 2 || Math.abs(gs0.clientHeight - L.h) > 2)) measureDirty = true;
+          }
+          if (measureDirty || frameNo % 300 === 0) {
             const before = L ? L.board.w + "x" + L.board.h : "";
             if (measure()) {
               const after = L.board.w + "x" + L.board.h;
@@ -10477,7 +10563,7 @@ const okHP = await shareInviteText(text);
             else upStreak = 0;
           }
           camSample(now);
-          if (sceneQuiet(now) && now - lastRenderAt < 50) return;
+          if (sceneQuiet(now) && now - lastRenderAt < 66) return;
           render(now, dt);
           lastRenderAt = now;
           lastTimerTxt = ($("#timerNum") || {}).textContent || "";
@@ -10510,10 +10596,11 @@ const okHP = await shareInviteText(text);
           });
         }
         try { init(); } catch (e) {}
-        return { get active() { return active; }, fps: () => fpsVal, videoOK: () => videoLive(), version: "scene-2",
+        return { get active() { return active; }, fps: () => fpsVal, videoOK: () => videoLive(), version: "scene-3",
           debug: () => ({ ribbon: !!ribbon, ribbonText: ribbon ? ribbon.text : "", pop: !!pop,
             camS: camPose ? Math.round(camPose.s * 100) / 100 : 1, camRx: camPose ? Math.round(camPose.rx * 10) / 10 : 0,
             avYou: AV.you.cur, avCpu: AV.cpu.cur, particles: particles.length, dpr: DPR,
+            avBox: (() => { try { if (!L) return null; const mk = (g) => g ? { cx: +g.cx.toFixed(1), cy: +g.cy.toFixed(1), ext: +g.EXT.toFixed(1), left: +(g.cx - g.EXT).toFixed(1), right: +(g.cx + g.EXT).toFixed(1), top: +(g.cy - g.EXT).toFixed(1), bottom: +(g.cy + g.EXT).toFixed(1) } : null; return { you: mk(avGeom("you")), cpu: mk(avGeom("cpu")), Lw: L.w, Lh: L.h }; } catch (e) { return null; } })(),
             prof: PROF.n ? { bg: +(PROF.bg / PROF.n).toFixed(1), board: +(PROF.board / PROF.n).toFixed(1), comp: +(PROF.comp / PROF.n).toFixed(1), hud: +(PROF.hud / PROF.n).toFixed(1), fx: +(PROF.fx / PROF.n).toFixed(1), n: PROF.n } : null }) };
       })();
     </script>
