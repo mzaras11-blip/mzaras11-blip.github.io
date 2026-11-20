@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-19T13:06:20-05:00",
+  "updated": "2026-11-19T19:05:46-05:00",
   "items": [
+    {
+      "title": "GTA VI tops an estimated 19.1 million copies and $1.84 billion by launch morning",
+      "summary": "Sensor Tower puts launch-morning sales at about 19.1 million copies and $1.84 billion, more than double GTA V's first-day $815.7 million, though Take-Two has not confirmed any official figure yet; analysts expect roughly $3 billion in sales by the end of the year.",
+      "source": "Men's Journal",
+      "url": "https://www.mensjournal.com/news/gta-6-sales-19-million-copies-gta-v-record",
+      "date": "2026-11-19",
+      "tag": "NEWS"
+    },
+    {
+      "title": "GTA VI smashes the livestream record with 7.91 million peak viewers",
+      "summary": "Streams Charts counts a 7.91 million peak across Twitch, YouTube and Kick in the first 24 hours, more than four times the old game-launch record, plus 125.47 million hours watched; IShowSpeed was the most-watched creator at 4.47 million hours.",
+      "source": "Streams Charts",
+      "url": "https://streamscharts.com/news/gta-6-day1-recap",
+      "date": "2026-11-19",
+      "tag": "NEWS"
+    },
+    {
+      "title": "IGN's Chapter 1 walkthrough maps all 23 opening missions",
+      "summary": "IGN's launch-day walkthrough covers every Chapter 1 mission from the prologue through the Leonida Keys, with early-game tips on money, vehicles, wanted levels and missables to grab before the chapter's points of no return.",
+      "source": "IGN",
+      "url": "https://openweb-ign.cdn.zephr.com/wikis/gta-6/Chapter_1_Guide_and_Tips",
+      "date": "2026-11-19",
+      "tag": "GUIDES"
+    },
     {
       "title": "Rockstar confirms GTA VI is now available worldwide",
       "summary": "Rockstar's launch-day announcement confirms GTA VI is out now for PS5 and Xbox Series X|S at the PlayStation Store, Microsoft Store, Rockstar Games Store and retailers, calling it the highest-rated game of all time and quoting Sam Houser on a game meant to exceed expectations; the 34-track official album from Atlantic Records lands at midnight.",
@@ -96,30 +120,6 @@
       "url": "https://www.talkesport.com/gta-6/gta-6-festival-miami-set-times-lineup/",
       "date": "2026-11-18",
       "tag": "OFFICIAL"
-    },
-    {
-      "title": "VGC's beginner's guide: six tips for your first hours in Leonida",
-      "summary": "VGC's starter guide covers stashing cash under the floorboards in Jason's bedroom until the Buck Me mission opens a bank account, using the minimap to spot hidden rooms and enterable buildings, feeding Jason's snake for an early Focus buff, and calling a mechanic for roadside repairs once that unlocks.",
-      "source": "VGC",
-      "url": "https://www.videogameschronicle.com/guide/gta-6-beginners-guide-6-tips-you-need-to-know-before-starting-gta-6/",
-      "date": "2026-11-18",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "GameSpot picks five things to do first in GTA 6",
-      "summary": "GameSpot recommends buying a suppressor at the Key Lento Ammu-Nation, exploring Key Lento and clearing its side content before moving on, saving toward a garage once garages unlock, and not stressing about early money since the story drains both accounts in the first stretch.",
-      "source": "GameSpot",
-      "url": "https://www.gamespot.com/articles/5-best-things-to-do-first-in-gta-6/",
-      "date": "2026-11-18",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "Reviews are in: GTA VI lands a 99 on Metacritic, tying the all-time record",
-      "summary": "The review embargo lifted at 6 a.m. ET on November 18 and the first verdicts are near-unanimous: a 99 Metascore from 100 critic reviews on PS5, tying Ocarina of Time for the highest ever, and 98 on OpenCritic with every critic recommending it. IGN, GamesRadar+, VGC and The Guardian are among the perfect scores, with the locked 30fps target the most common complaint.",
-      "source": "TalkEsport",
-      "url": "https://www.talkesport.com/reviews/gta-6-reviews-roundup-scores/",
-      "date": "2026-11-18",
-      "tag": "NEWS"
     }
   ]
 }
