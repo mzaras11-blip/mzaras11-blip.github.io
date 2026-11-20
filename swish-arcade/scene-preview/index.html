@@ -9417,6 +9417,30 @@ const okHP = await shareInviteText(text);
         }
         const TILE_BASE = { blue: "#3A9BEA", green: "#4CC96B", pink: "#F2607E", peach: "#F49A66", gold: "#F7A23B" };
 
+        /* Board color (fix3): stable per-cell color for the unfilled board.
+           Index-only xor-shift hashes (same family as hueIdx), so a cell's
+           color never changes between frames or turns. Everything here is
+           drawn into the cached board canvas — zero per-frame cost. */
+        function tintIdx(i) { let x = (i * 2654435761) >>> 0; x ^= x >>> 13; x ^= x >>> 7; return (x >>> 0) % 4; }
+        function clueIdx(i) { let x = ((i + 41) * 2654435761) >>> 0; x ^= x >>> 13; x ^= x >>> 5; return (x >>> 0) % 6; }
+        /* Letter slots: deep but clearly tinted — indigo, deep teal, plum, deep blue. */
+        const SLOT_TINTS = ["#212B4D", "#17363D", "#2E1F45", "#1D3258"];
+        /* Blocked cells: same hues, deeper, so the crossword shape still reads. */
+        const VOID_TINTS = ["#131A30", "#0F242A", "#1C1229", "#12233F"];
+        /* Bonus slots: warm deep gold — apart from the cool tints at a glance. */
+        const BONUS_FILL = "#4A3410";
+        /* Clue cells: rotating fills from the game's own hues. Each text
+           color is >= ~4.3:1 against the darkest stop of its own gradient
+           (the shipped gold pair is ~4.4:1). */
+        const CLUE_FILLS = [
+          { top: "#FFD873", bot: "#F59E0B", lip: "#B45309", txt: "#713F12" },
+          { top: "#94D2F8", bot: "#4AA8E8", lip: "#2E74B5", txt: "#0C3A5E" },
+          { top: "#4ED3A5", bot: "#12B981", lip: "#0B7A5C", txt: "#06382B" },
+          { top: "#FFC49C", bot: "#F49A66", lip: "#C4672F", txt: "#66290D" },
+          { top: "#FFB1C6", bot: "#F4709B", lip: "#C2436F", txt: "#5C1030" },
+          { top: "#C9B4F7", bot: "#9D6BF0", lip: "#6F3EC4", txt: "#31105F" }
+        ];
+
         /* ---------------- avatars: video people ---------------- */
         const AV = {
           you: { idle: null, celeb: null, shock: null, cur: "idle", until: 0, pop: 0, still: "imgYou" },
@@ -9813,18 +9837,19 @@ const okHP = await shareInviteText(text);
           const cell = G.puzzle.cells[i], kind = cell.k;
           if (kind === "x") {
             roundRectPath(bx, x + 0.5, y + 0.5, w - 1, h - 1, 6);
-            bx.fillStyle = "#090C14"; bx.fill();
+            bx.fillStyle = VOID_TINTS[tintIdx(i)]; bx.fill();
             return;
           }
           if (kind === "c") {
+            const cf = CLUE_FILLS[clueIdx(i)];
             const g = bx.createLinearGradient(0, y, 0, y + h);
-            g.addColorStop(0, "#FFD873"); g.addColorStop(1, "#F59E0B");
+            g.addColorStop(0, cf.top); g.addColorStop(1, cf.bot);
             roundRectPath(bx, x + 0.5, y + 0.5 + 1.5, w - 1, h - 1, 6);
-            bx.fillStyle = "#B45309"; bx.fill();
+            bx.fillStyle = cf.lip; bx.fill();
             roundRectPath(bx, x + 0.5, y + 0.5, w - 1, h - 1, 6);
             bx.fillStyle = g; bx.fill();
             const cl = clueCache[i] || {};
-            bx.fillStyle = "#713F12";
+            bx.fillStyle = cf.txt;
             if (cl.pic) {
               bx.font = Math.round(h * 0.52) + "px serif"; bx.textAlign = "center"; bx.textBaseline = "middle";
               bx.fillText(cl.pic, x + w / 2, y + h / 2 + 1);
@@ -9837,15 +9862,15 @@ const okHP = await shareInviteText(text);
             return;
           }
           // letter slot
+          const bonus = cell.b === true;
           roundRectPath(bx, x + 0.5, y + 0.5, w - 1, h - 1, 7);
-          bx.fillStyle = "#151B2A"; bx.fill();
+          bx.fillStyle = bonus ? BONUS_FILL : SLOT_TINTS[tintIdx(i)]; bx.fill();
           bx.beginPath(); bx.moveTo(x + 7, y + 2); bx.lineTo(x + w - 7, y + 2);
           bx.lineWidth = 2; bx.strokeStyle = "rgba(0,0,0,0.55)"; bx.stroke();
-          const bonus = cell.b === true;
           if (bonus) {
             roundRectPath(bx, x + 1.5, y + 1.5, w - 3, h - 3, 6);
-            bx.lineWidth = 1.5; bx.strokeStyle = "rgba(247,162,59,0.55)"; bx.stroke();
-            bx.font = "900 7.5px Arial"; bx.fillStyle = "#F7A23B"; bx.textAlign = "right"; bx.textBaseline = "bottom";
+            bx.lineWidth = 2; bx.strokeStyle = "rgba(255,190,60,0.9)"; bx.stroke();
+            bx.font = "900 8.5px Arial"; bx.fillStyle = "#FFC65C"; bx.textAlign = "right"; bx.textBaseline = "bottom";
             bx.fillText("×2", x + w - 3, y + h - 2);
           }
           const letter = G.filled[i];
