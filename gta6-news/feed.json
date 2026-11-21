@@ -1,6 +1,14 @@
 {
-  "updated": "2026-11-20T13:05:06-05:00",
+  "updated": "2026-11-20T19:05:42-05:00",
   "items": [
+    {
+      "title": "Rockstar confirms $3.79 billion in day-one sales, the biggest entertainment launch ever",
+      "summary": "Rockstar and Take-Two's first official figures put GTA VI day-one retail sales at $3.79 billion worldwide through the end of November 19, with a record 32.5 million copies sold before launch, far above the earlier Sensor Tower estimates; Sam Houser thanked players for the response.",
+      "source": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20261120446139/en/Grand-Theft-Auto-VI-Shatters-Entertainment-Box-Office-Records-with-%243.79-Billion-in-Day-One-Retail-Sales",
+      "date": "2026-11-20",
+      "tag": "OFFICIAL"
+    },
     {
       "title": "Some players hit game-breaking crashes on PS5 and Xbox",
       "summary": "Dexerto rounds up player reports of repeated crashes since launch — PS5 error CE-108255-1 blocking one player at the early Pipework mission and a PS5 Pro owner in the prologue, plus Xbox Series X crashes minutes into play — with cache clears, database rebuilds and reinstalls not fixing it, and no patch out yet.",
@@ -112,14 +120,6 @@
       "url": "https://www.pushsquare.com/guides/gta-6-tips-and-tricks-you-need-to-know",
       "date": "2026-11-18",
       "tag": "GUIDES"
-    },
-    {
-      "title": "Rockstar leaves sex workers out of GTA VI for the first time in 25 years",
-      "summary": "Consequence reports Rockstar told Shacknews the feature was left out to keep the focus on Jason and Lucia's couple-on-the-run story, carrying forward systems like the wanted system, radio, robberies and car theft instead; strip clubs are still in the game.",
-      "source": "Consequence",
-      "url": "https://consequence.net/2026/11/gta-6-no-sex-workers-rockstar-games-comment/",
-      "date": "2026-11-18",
-      "tag": "NEWS"
     }
   ]
 }
