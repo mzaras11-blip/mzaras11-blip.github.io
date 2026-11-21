@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T07:05:56-05:00",
+  "updated": "2026-11-21T13:06:34-05:00",
   "items": [
     {
       "title": "GTA VI: The Festival takes over Miami tonight with Travis Scott and Cardi B",
@@ -8,6 +8,30 @@
       "url": "https://www.ggrecon.com/articles/gta-6-festival-set-times-miami/",
       "date": "2026-11-21",
       "tag": "NEWS"
+    },
+    {
+      "title": "GTA VI: The Album is out now with 34 original tracks",
+      "summary": "Hypebeast reports Atlantic Records and Rockstar have released the full 34-track companion album on streaming, spanning Playboi Carti, Dua Lipa, JENNIE, Travis Scott and even Keith Richards, with three Atlantic-exclusive physical editions including a liquid-filled vinyl, a splatter vinyl and a CD jewel case.",
+      "source": "Hypebeast",
+      "url": "https://hypebeast.com/2026/11/rockstar-games-gta-grand-theft-auto-vi-the-album-stream",
+      "date": "2026-11-20",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Players find infinite-money tricks in GTA VI — and many are refusing to use them",
+      "summary": "Polygon rounds up the get-rich-quick methods going viral, from looting a South Vice-Dale County warehouse and save-reloading to respawn its roughly $8,000 haul, to a mission-restart trick that instantly reopens robbed stores, and notes many players are swearing off the exploits because they undercut the game's scrape-by story, with a Rockstar patch likely to close them.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-infinite-money-glitch/",
+      "date": "2026-11-20",
+      "tag": "NEWS"
+    },
+    {
+      "title": "A camera glitch unlocks a hidden first-person mode in GTA VI",
+      "summary": "VGC's guide explains how remapping the touch pad or View button to Camera, then opening and closing the in-game phone inside a car while mashing that shortcut, locks the view into a surprisingly complete first-person mode with working weapon animations, though shop menus can break it and only reloading a save returns to third-person.",
+      "source": "VGC",
+      "url": "https://www.videogameschronicle.com/guide/gta-6-first-person-mode-glitch-grand-theft-auto/",
+      "date": "2026-11-20",
+      "tag": "GUIDES"
     },
     {
       "title": "61% of US PS5 players played GTA VI on launch day, averaging over 8 hours",
@@ -96,30 +120,6 @@
       "url": "https://www.businesswire.com/news/home/20261119830927/en/Rockstar-Games-Announces-Grand-Theft-Auto-VI-Now-Available",
       "date": "2026-11-19",
       "tag": "OFFICIAL"
-    },
-    {
-      "title": "GTA VI is already chasing world records on launch day",
-      "summary": "Guinness World Records notes the reveal trailer's 24-hour viewing record and an estimated $750 million in pre-orders two weeks ago, and says a 99 Metacritic average would take the most critically acclaimed game ever from Ocarina of Time, a record held since 1997.",
-      "source": "Guinness World Records",
-      "url": "https://www.guinnessworldrecords.com/news/2026/11/gta-vi-is-finally-out-today-and-its-already-breaking-world-records",
-      "date": "2026-11-19",
-      "tag": "NEWS"
-    },
-    {
-      "title": "International critics rave as GTA VI draws 2.3 million Twitch viewers",
-      "summary": "Le Monde rounds up glowing verdicts from IGN, Bloomberg, The Washington Post and the French press, with the first reviews landing at 99 on Metacritic, and reports nearly 2.3 million people were watching GTA VI streams on Twitch by midday Paris time as early players went live from New Zealand.",
-      "source": "Le Monde",
-      "url": "https://www.lemonde.fr/en/pixels/article/2026/11/19/grand-theft-auto-vi-rockstar-s-latest-release-earns-rave-reviews-from-international-critics_6784054_13.html",
-      "date": "2026-11-19",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Launch day in America: GTA VI is live, and the live blog is rolling",
-      "summary": "USA Today's launch-day live coverage follows the US unlock seconds after midnight ET on November 19, with Sensor Tower estimating $1.65 billion in presales from 17.07 million copies (74% on PS5), first-hour impressions from Vice City, and launch-week food deals including Popeyes' Spice City Sandwich and Subway's Vice City Cubano running through November 22.",
-      "source": "USA TODAY",
-      "url": "https://www.usatoday.com/story/tech/gaming/2026/11/19/gta-6-live-updates--live/92811863007/",
-      "date": "2026-11-19",
-      "tag": "NEWS"
     }
   ]
 }
