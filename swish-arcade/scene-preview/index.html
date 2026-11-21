@@ -9673,13 +9673,14 @@ const okHP = await shareInviteText(text);
         let pop = null;         // {total, by, t0, last}
         let dispScore = [0, 0];
         const PALETTE = ["#F2607E", "#3A9BEA", "#F7A23B", "#4CC96B", "#9C6BE3", "#FFD60A", "#FABF4F"];
-        function spawnConfetti(x, y, n, power) {
+        function spawnConfetti(x, y, n, power, colors) {
+          const pal = colors && colors.length ? colors : PALETTE;
           for (let i = 0; i < n; i++) {
             if (particles.length > 260) break;
             const a = Math.random() * Math.PI * 2, sp = (0.4 + Math.random() * 0.6) * (power || 3);
             particles.push({ kind: "confetti", x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 2.2,
               w: 4 + Math.random() * 5, h: 3 + Math.random() * 4, rot: Math.random() * 6.28,
-              vr: (Math.random() - 0.5) * 0.3, color: PALETTE[(Math.random() * PALETTE.length) | 0],
+              vr: (Math.random() - 0.5) * 0.3, color: pal[(Math.random() * pal.length) | 0],
               shape: (Math.random() * 3) | 0, t0: performance.now(), life: 1500 + Math.random() * 900 });
           }
         }
@@ -9692,6 +9693,73 @@ const okHP = await shareInviteText(text);
               t0: performance.now(), life: 480 + Math.random() * 220 });
           }
         }
+        /* ---------------- FEATURES Phase A: effects layer ----------------
+           A1 letter sweep before the slam, A2 avatar speech bubbles,
+           A3 Rush combo heat + tile trails, A4 danger heartbeat,
+           A5 slow-motion win cinematic. Presentation only — nothing
+           in this section writes game state. */
+        let sweep = null;         // A1 {cells, t0, per, total}
+        let pendingCeleb = null;  // A1 {wi, by, at, cells} — celebration fires at sweep end
+        let finalSlam = false;    // A5 the final word used the slow slam
+        let cineUntil = 0;        // A5 tap-to-skip window end
+        const BUB = { you: null, cpu: null };   // A2 {text, t0, dur, prio}
+        const BUB_LINES = {
+          scoreYou: ["Nailed it!", "That's how it's done.", "Yes — mine!", "Got one!", "Too smooth."],
+          scoreCpu: ["Too easy.", "Mine, thanks.", "Keep up.", "Saw that one first.", "All mine."],
+          tauntYou: ["I'm ahead now!", "Catch me if you can.", "Leading suits me."],
+          tauntCpu: ["My lead now.", "Try to keep up.", "Ahead — where I belong."],
+          grumbleYou: ["Hey — that was mine...", "Okay, that stings.", "I needed that one."],
+          grumbleCpu: ["Hmph. Lucky.", "That one was mine.", "Enjoy it while it lasts."],
+          comboYou: ["Heating up!", "Can't stop me now!", "On a tear!"],
+          comboCpu: ["I'm on fire.", "Combo climbing.", "Feel that heat?"],
+          winYou: ["I win! Great game.", "Victory tastes sweet."],
+          winCpu: ["I win. Good game.", "Told you to keep up."],
+          loseYou: ["Good game... ouch.", "Rematch. Right now."],
+          loseCpu: ["...Good game.", "I want a rematch."]
+        };
+        const bubIdx = {};
+        let lastLeader = -1;      // -1 none yet, 0 you, 1 cpu (ties don't move it)
+        function say(who, cat, dur, prio) {
+          const lines = BUB_LINES[cat]; if (!lines || !lines.length) return;
+          const now = performance.now();
+          const cur = BUB[who];
+          prio = prio || 1;
+          if (cur && now - cur.t0 < cur.dur) {
+            if (prio < cur.prio) return;
+            if (prio === cur.prio && now - cur.t0 < 650) return;
+          }
+          let i = ((bubIdx[cat] || 0) + 1) % lines.length;
+          if (cur && lines[i] === cur.text) i = (i + 1) % lines.length;
+          bubIdx[cat] = i;
+          BUB[who] = { text: lines[i], t0: now, dur: dur || 1600, prio };
+        }
+        function leaderOf() {
+          if (typeof G === "undefined" || !G) return 2;
+          if (G.scores[0] === G.scores[1]) return 2;
+          return G.scores[0] > G.scores[1] ? 0 : 1;
+        }
+        /* A3: Rush heat — 0 at combo x1, 1 at x5, eased toward live. */
+        let heatCur = 0;
+        function heatTarget() {
+          if (typeof G === "undefined" || !G || G.mode !== "rush" || !G.rush || G.gameOver) return 0;
+          return clamp(((G.rush.combo[0] || 1) - 1) / 4, 0, 1);
+        }
+        function heatColor(h) {
+          const stops = [[56, 130, 246], [247, 162, 59], [242, 96, 96]];
+          const x = clamp(h, 0, 1) * 2, i = Math.min(1, Math.floor(x)), f = x - i;
+          const a = stops[i], b = stops[i + 1];
+          return "rgb(" + Math.round(lerp(a[0], b[0], f)) + "," + Math.round(lerp(a[1], b[1], f)) + "," + Math.round(lerp(a[2], b[2], f)) + ")";
+        }
+        /* A4: danger heartbeat — two-beat thump over ~620 ms. */
+        let heartbeat = null;     // {t0}
+        const dangerSeen = {};    // wi -> true (once per word-threat per game)
+        let dangerG = null;
+        function beatK(t) {
+          const b1 = Math.exp(-Math.pow((t - 0.14) / 0.075, 2));
+          const b2 = 0.75 * Math.exp(-Math.pow((t - 0.40) / 0.085, 2));
+          return Math.min(1, b1 + b2);
+        }
+
         function showRibbon(text, by, prio) {
           const now = performance.now();
           if (ribbon && prio < ribbon.prio && now - ribbon.t0 < 1500) return;
@@ -9716,7 +9784,26 @@ const okHP = await shareInviteText(text);
           const now = performance.now();
           slammedAt[wi] = now;
           if (typeof G === "undefined" || !G || !L) return;
-          const cells = G.wordCells[wi] || [];
+          const cells = (G.wordCells[wi] || []).slice();
+          /* A5 sequencing: flag the final word NOW, synchronously —
+             the game's own end-of-game can fire before the delayed
+             celebration runs, and the game-over beat must know the
+             slow slam is the cinematic (it checks this flag). */
+          try { if (G.completedWords && G.puzzle && G.puzzle.words && G.completedWords.size >= G.puzzle.words.length) finalSlam = true; } catch (e) {}
+          /* A1: the glow sweep runs letter-by-letter along the word
+             FIRST (40–60 ms per letter, total capped at 480 ms); the
+             existing celebration — flash, ribbon, confetti and the
+             camera slam — fires when the sweep lands. Reduced-motion
+             (or a 1-letter word) skips straight to the celebration. */
+          if (reduced() || cells.length < 2) { fireCelebration(wi, by, cells); return; }
+          const total = Math.min(60 * cells.length, 480);
+          sweep = { cells, t0: now, per: total / cells.length, total };
+          pendingCeleb = { wi, by, at: now + total, cells };
+          boardDirty = true; boardAnimUntil = Math.max(boardAnimUntil, now + total + 750);
+        }
+        function fireCelebration(wi, by, cells) {
+          const now = performance.now();
+          if (typeof G === "undefined" || !G || !L) return;
           const word = ((G.puzzle.words[wi] && G.puzzle.words[wi].a) || "").toString();
           wordFlash = { cells: cells.slice(), t0: now };
           boardDirty = true; boardAnimUntil = Math.max(boardAnimUntil, now + 700);
@@ -9726,30 +9813,49 @@ const okHP = await shareInviteText(text);
           showRibbon(word.toUpperCase() + "!", by, 2);
           spawnConfetti(sx, sy, 30, 3.4); spawnSparks(sx, sy, 8);
           const rp = camPose || restPose();
+          /* A5: when this word ends the game, the slam plays in slow
+             motion (~0.35x — every key time and the total duration
+             scale by 2.86) and the game-over beat takes over from
+             there instead of adding its own sweep. */
+          let isFinal = false;
+          try { isFinal = !!(G.completedWords && G.puzzle && G.puzzle.words && G.completedWords.size >= G.puzzle.words.length); } catch (e) {}
+          if (isFinal) { finalSlam = true; camAnim = null; camPrio = 0; }  // the final slam always wins the camera
+          const TS = isFinal ? 2.86 : 1;
           if (word.length >= 7) {
-            camStart(4, 1900, [
+            camStart(4, 1900 * TS, [
               { at: 0, pose: { ...rp } },
-              { at: 500, pose: { s: 1.48, fx: bx2, fy: by2, rx: 9, rz: 1.5, tx: 36, ty: 0 }, ease: easeInOut },
-              { at: 1400, pose: { s: 1.48, fx: bx2, fy: by2, rx: 9, rz: 1.5, tx: -36, ty: 0 }, ease: easeInOut },
-              { at: 1900, pose: restPose(), ease: easeInOut }]);
+              { at: 500 * TS, pose: { s: 1.48, fx: bx2, fy: by2, rx: 9, rz: 1.5, tx: 36, ty: 0 }, ease: easeInOut },
+              { at: 1400 * TS, pose: { s: 1.48, fx: bx2, fy: by2, rx: 9, rz: 1.5, tx: -36, ty: 0 }, ease: easeInOut },
+              { at: 1900 * TS, pose: restPose(), ease: easeInOut }]);
           } else {
-            camStart(3, 2420, [
+            camStart(3, 2420 * TS, [
               { at: 0, pose: { ...rp } },
-              { at: 120, pose: { ...rp }, ease: easeOut },
-              { at: 720, pose: { s: 2.2, fx: bx2, fy: by2, rx: 13.5, rz: 2.5, tx: 0, ty: 0 }, ease: easeOut },
-              { at: 1300, pose: { s: 2.24, fx: bx2 + 6, fy: by2 - 4, rx: 14.5, rz: 3.2, tx: 5, ty: -3 }, ease: easeInOut },
-              { at: 1800, pose: { s: 2.17, fx: bx2 - 5, fy: by2 + 3, rx: 12.5, rz: 2, tx: -5, ty: 2 }, ease: easeInOut },
-              { at: 2120, pose: { s: 2.2, fx: bx2, fy: by2, rx: 13.5, rz: 2.5, tx: 0, ty: 0 }, ease: easeInOut },
-              { at: 2420, pose: restPose(), ease: easeInOut }]);
+              { at: 120 * TS, pose: { ...rp }, ease: easeOut },
+              { at: 720 * TS, pose: { s: 2.2, fx: bx2, fy: by2, rx: 13.5, rz: 2.5, tx: 0, ty: 0 }, ease: easeOut },
+              { at: 1300 * TS, pose: { s: 2.24, fx: bx2 + 6, fy: by2 - 4, rx: 14.5, rz: 3.2, tx: 5, ty: -3 }, ease: easeInOut },
+              { at: 1800 * TS, pose: { s: 2.17, fx: bx2 - 5, fy: by2 + 3, rx: 12.5, rz: 2, tx: -5, ty: 2 }, ease: easeInOut },
+              { at: 2120 * TS, pose: { s: 2.2, fx: bx2, fy: by2, rx: 13.5, rz: 2.5, tx: 0, ty: 0 }, ease: easeInOut },
+              { at: 2420 * TS, pose: restPose(), ease: easeInOut }]);
           }
           if (by === 0) { avReact("you", "celeb", 2500); avReact("cpu", "shock", 2300); }
           else { avReact("cpu", "smug", 2600); avReact("you", "shock", 2300); }
+          /* A2: speech — a lead change earns a taunt (and a grumble
+             from the side that lost it); otherwise the scorer talks. */
+          const lead = leaderOf();
+          if (lastLeader !== -1 && lead !== 2 && lead !== lastLeader) {
+            if (lead === 0) { say("you", "tauntYou", 1700, 2); setTimeout(() => say("cpu", "grumbleCpu", 1500, 1), 550); }
+            else { say("cpu", "tauntCpu", 1700, 2); setTimeout(() => say("you", "grumbleYou", 1500, 1), 550); }
+          } else {
+            say(by === 0 ? "you" : "cpu", by === 0 ? "scoreYou" : "scoreCpu", 1600, 1);
+          }
+          if (lead !== 2) lastLeader = lead;
         }
         function onCombo(cell, by, n) {
           const s = cellScreen(cell);
           spawnSparks(s.x, s.y, 10);
           tags.push({ text: "×" + n, x: s.x, y: s.y - 14, t0: performance.now() });
           if (n >= 3) { if (by === 0) avReact("you", "celeb", 1700); else avReact("cpu", "smug", 1700); }
+          if (n >= 3) say(by === 0 ? "you" : "cpu", by === 0 ? "comboYou" : "comboCpu", 1500, 1);
         }
         function snapshot() {
           if (typeof G === "undefined" || !G) return { scores: [0, 0], words: new Set(), combo: [0, 0], current: 0 };
@@ -9793,16 +9899,47 @@ const okHP = await shareInviteText(text);
             _over.call(ArcadeJuice);
             try {
               if (!active || typeof G === "undefined" || !G) return;
+              const now = performance.now();
               const w = G.winner;
               const rp = camPose || restPose();
-              camStart(4, 1900, [
-                { at: 0, pose: { ...rp } },
-                { at: 600, pose: { s: 1.45, fx: rp.fx, fy: rp.fy, rx: 8, rz: 1, tx: 34, ty: 0 }, ease: easeInOut },
-                { at: 1350, pose: { s: 1.45, fx: rp.fx, fy: rp.fy, rx: 8, rz: 1, tx: -34, ty: 0 }, ease: easeInOut },
-                { at: 1900, pose: restPose(), ease: easeInOut }]);
-              if (L) { spawnConfetti(L.w * 0.3, L.h * 0.35, 40, 4); spawnConfetti(L.w * 0.7, L.h * 0.3, 40, 4); }
-              if (w === 0) { showRibbon("YOU WIN!", 0, 4); avReact("you", "celeb", 4200); avReact("cpu", "shock", 3800); }
-              else if (w === 1) { avReact("cpu", "smug", 4200); avReact("you", "shock", 3800); }
+              /* A5 win cinematic: if the final word's slow-motion
+                 slam is already running it IS the cinematic — don't
+                 stack a second sweep on top of it. Otherwise play the
+                 win sweep stretched to the same slow beat. Either way
+                 the whole beat is skippable with one tap (the
+                 pointerdown hook in init clears the camera track),
+                 and the results modal timing is untouched. */
+              /* A board-full ending means the final word's own
+                 celebration owns the camera. It may not have fired
+                 yet: same-device completions reach the scene through
+                 the frame-diff net a frame AFTER the placement, while
+                 the game's end check runs synchronously inside it —
+                 so this wrapper can run first. Detect the full board
+                 directly instead of trusting the flag alone. */
+              let boardFullFinal = false;
+              try { boardFullFinal = !!(G.completedWords && G.puzzle && G.puzzle.words && G.completedWords.size >= G.puzzle.words.length); } catch (e) {}
+              cineUntil = now + ((finalSlam || boardFullFinal) ? 7000 : 3400);
+              if (!finalSlam && !boardFullFinal) {
+                const TS = 3000 / 1900;
+                camStart(4, 3000, [
+                  { at: 0, pose: { ...rp } },
+                  { at: 600 * TS, pose: { s: 1.45, fx: rp.fx, fy: rp.fy, rx: 8, rz: 1, tx: 34, ty: 0 }, ease: easeInOut },
+                  { at: 1350 * TS, pose: { s: 1.45, fx: rp.fx, fy: rp.fy, rx: 8, rz: 1, tx: -34, ty: 0 }, ease: easeInOut },
+                  { at: 3000, pose: restPose(), ease: easeInOut }]);
+              }
+              finalSlam = false;
+              // confetti in the WINNER's colours: blue family for the
+              // player, orange/rose for the CPU.
+              const WIN_COL = { you: ["#3A9BEA", "#2563EB", "#93C5FD", "#FFD60A"], cpu: ["#F49A66", "#F2607E", "#FB923C", "#FFD60A"] };
+              if (L) {
+                const cols = w === 0 ? WIN_COL.you : (w === 1 ? WIN_COL.cpu : null);
+                spawnConfetti(L.w * 0.3, L.h * 0.35, 40, 4, cols); spawnConfetti(L.w * 0.7, L.h * 0.3, 40, 4, cols);
+              }
+              // the loser's avatar deflates / sags (drawAvatar reads it)
+              const loser = w === 0 ? "cpu" : (w === 1 ? "you" : null);
+              if (loser) AV[loser].deflateUntil = now + 4200;
+              if (w === 0) { showRibbon("YOU WIN!", 0, 4); avReact("you", "celeb", 4200); avReact("cpu", "shock", 3800); say("you", "winYou", 2600, 3); say("cpu", "loseCpu", 2600, 3); }
+              else if (w === 1) { avReact("cpu", "smug", 4200); avReact("you", "shock", 3800); say("cpu", "winCpu", 2600, 3); say("you", "loseYou", 2600, 3); }
             } catch (e) {}
           };
           ArcadeJuice.sync = function () {
@@ -9825,14 +9962,24 @@ const okHP = await shareInviteText(text);
             lastG = G; clueDirty = true; prevFilled = G.filled.slice();
             prevWords = new Set(G.completedWords || []); prevCurrent = G.current || 0;
             dispScore = [G.scores[0] || 0, G.scores[1] || 0];
+            // Phase A per-game reset: bubbles, sweep, leader tracking,
+            // danger flags and the cinematic flag all start clean.
+            BUB.you = null; BUB.cpu = null; sweep = null; pendingCeleb = null;
+            lastLeader = -1; finalSlam = false; heartbeat = null;
+            for (const k in dangerSeen) delete dangerSeen[k];
+            dangerG = G;
             return;
           }
           if (!prevFilled) prevFilled = G.filled.slice();
           let anyFill = false;
+          const changedCells = [];
           for (let i = 0; i < G.filled.length; i++) {
             if (prevFilled[i] !== G.filled[i]) {
               anyFill = true;
-              if (prevFilled[i] === null && G.filled[i] !== null && now - placedAt[i] > 900) placedAt[i] = now;
+              if (prevFilled[i] === null && G.filled[i] !== null) {
+                changedCells.push(i);
+                if (now - placedAt[i] > 900) placedAt[i] = now;
+              }
             }
             prevFilled[i] = G.filled[i];
           }
@@ -9854,13 +10001,52 @@ const okHP = await shareInviteText(text);
               }
             });
           }
+          /* A3: while a Rush combo is hot (x2+), the local player's
+             placements shed a few short-lived trail particles. */
+          if (changedCells.length && G.mode === "rush" && G.rush && (G.rush.combo[0] || 0) >= 2) {
+            for (const ci of changedCells) {
+              if (G.filledBy[ci] !== 0) continue;
+              const s = cellScreen(ci);
+              for (let k = 0; k < 3; k++) {
+                if (particles.length > 260) break;
+                particles.push({ kind: "trail", x: s.x + (Math.random() - 0.5) * 14, y: s.y + (Math.random() - 0.5) * 14,
+                  vx: (Math.random() - 0.5) * 0.7, vy: 0.5 + Math.random() * 0.7, w: 3 + Math.random() * 3, rot: 0, vr: 0,
+                  color: heatCur > 0.66 ? "#F2607E" : "#F7A23B", shape: 1, t0: now, life: 340 + Math.random() * 160 });
+              }
+            }
+          }
+          /* A4: danger moment — the OPPOSING side (filledBy 1) moves a
+             word to exactly one letter remaining: heartbeat pulse +
+             that side's avatar leans in, at most once per word-threat.
+             Skipped in Practice (no opponent) and Rush PvP (the rival
+             races on their own board, not this one). */
+          if (changedCells.length && !G.rushPvp && G.mode !== "practice") {
+            if (dangerG !== G) { dangerG = G; for (const k in dangerSeen) delete dangerSeen[k]; }
+            for (const ci of changedCells) {
+              if (G.filledBy[ci] !== 1) continue;
+              const wis = G.cellWords ? G.cellWords[ci] : null;
+              if (!wis) continue;
+              for (const wi of wis) {
+                if (dangerSeen[wi] || (G.completedWords && G.completedWords.has(wi))) continue;
+                const cells = G.wordCells[wi] || [];
+                let rem = 0;
+                for (const cc of cells) if (G.filled[cc] === null || G.filled[cc] === undefined) rem++;
+                if (rem === 1) {
+                  dangerSeen[wi] = true;
+                  heartbeat = { t0: now };
+                  AV.cpu.leanUntil = now + 1000;
+                  avReact("cpu", "smug", 1100);
+                }
+              }
+            }
+          }
         }
 
         /* ---------------- board: drawn in board space, warped by the camera ---------------- */
         let boardCv = null, bx = null, DPR = 1;
         let boardDirty = true, boardAnimUntil = 0, prevSel = undefined, prevHover = -2;
         function drawBoard(now) {
-          const flashActive = wordFlash && now - wordFlash.t0 < 650;
+          const flashActive = (wordFlash && now - wordFlash.t0 < 650) || !!sweep || !!pendingCeleb;
           if (!boardDirty && !flashActive && now > boardAnimUntil) return;
           boardDirty = false; boardVer++;
           const w = L.board.w, h = L.board.h;
@@ -9987,6 +10173,23 @@ const okHP = await shareInviteText(text);
             roundRectPath(bx, x + 0.5, y + 0.5, w - 1, h - 1, 7);
             bx.fillStyle = "rgba(255,214,10," + fa.toFixed(3) + ")"; bx.fill();
             bx.lineWidth = 2; bx.strokeStyle = "rgba(255,255,255," + (fa * 1.4).toFixed(3) + ")"; bx.stroke();
+          }
+          /* A1: the letter sweep — each tile of the just-completed
+             word lights in turn (bright head, short fade) before the
+             celebration flash takes over. */
+          if (sweep) {
+            const k = sweep.cells.indexOf(i);
+            if (k !== -1) {
+              const lt = (now - sweep.t0) - k * sweep.per;
+              if (lt > 0) {
+                const a = lt < 110 ? (lt / 110) * 0.85 : Math.max(0, 0.85 * (1 - (lt - 110) / 330));
+                if (a > 0.01) {
+                  roundRectPath(bx, x + 0.5, y + 0.5, w - 1, h - 1, 7);
+                  bx.fillStyle = "rgba(255,224,130," + a.toFixed(3) + ")"; bx.fill();
+                  bx.lineWidth = 2; bx.strokeStyle = "rgba(255,255,255," + Math.min(1, a * 1.3).toFixed(3) + ")"; bx.stroke();
+                }
+              }
+            }
           }
           bx.restore();
         }
@@ -10241,7 +10444,29 @@ const okHP = await shareInviteText(text);
           const A = AV[who];
           let sc = 1;
           if (A.pop) { const t = (now - A.pop) / 480; if (t >= 0 && t < 1) sc = 1 + 0.22 * Math.sin(t * Math.PI); }
+          /* Phase A avatar body language: A4 lean-in (threatening
+             side tips toward the board, slight grow) and A5 deflate
+             (the loser squashes toward its bottom edge and sags). */
+          let avOX = 0, avOY = 0, avSY = 1;
+          if (A.leanUntil && now < A.leanUntil) {
+            const t = 1 - (A.leanUntil - now) / 1000;
+            const k = Math.sin(Math.min(1, Math.max(0, t)) * Math.PI);
+            avOX = (who === "you" ? 1 : -1) * 9 * k;
+            sc *= 1 + 0.05 * k;
+          }
+          if (A.deflateUntil && now < A.deflateUntil) {
+            const t = 1 - (A.deflateUntil - now) / 4200;
+            const k = t < 0.18 ? easeOut(clamp(t / 0.18, 0, 1)) : 1;
+            avSY = 1 - 0.24 * k; avOY = R * 0.20 * k;
+          }
+          const avWarp = (fn) => {
+            c.save();
+            c.translate(cx + avOX, cy + avOY + R * sc); c.scale(1, avSY); c.translate(-cx, -(cy + R * sc));
+            fn();
+            c.restore();
+          };
           const isActive = typeof G !== "undefined" && G && ((who === "you" && G.current === 0) || (who === "cpu" && G.current === 1)) && !G.gameOver;
+          avWarp(() => {
           c.save();
           c.beginPath(); c.arc(cx, cy, R * sc + 4, 0, 6.283);
           c.fillStyle = isActive ? "rgba(255,214,10,0.28)" : "rgba(0,0,0,0.28)"; c.fill();
@@ -10269,8 +10494,11 @@ const okHP = await shareInviteText(text);
             c.fillStyle = who === "you" ? "#2563EB" : "#991B1B"; c.fillRect(cx - R, cy - R, 2 * R, 2 * R);
           }
           c.restore();
+          });
+          avWarp(() => {
           c.beginPath(); c.arc(cx, cy, R * sc, 0, 6.283);
           c.lineWidth = 3; c.strokeStyle = who === "you" ? "#F4C275" : "#FB7185"; c.stroke();
+          });
         }
         let gradCache = {};
         function panelGrad(c, who, r) {
@@ -10470,6 +10698,12 @@ const okHP = await shareInviteText(text);
               else if (p.shape === 1) { c.beginPath(); c.arc(0, 0, p.w / 2, 0, 6.283); c.fill(); }
               else c.fillRect(-p.w / 2, -p.h / 4, p.w, p.h / 2);
               c.restore();
+            } else if (p.kind === "trail") {
+              // A3: short drift-and-fade dots shed by hot-combo placements
+              p.x += p.vx * dts * 60; p.y += p.vy * dts * 60;
+              c.save(); c.globalAlpha = (1 - k) * 0.8;
+              c.fillStyle = p.color; c.beginPath(); c.arc(p.x, p.y, Math.max(0.4, p.w * (1 - k * 0.5)), 0, 6.283); c.fill();
+              c.restore();
             } else {
               p.x += p.vx * dts * 60; p.y += p.vy * dts * 60;
               const sc = 0.6 + k * 0.9;
@@ -10524,6 +10758,61 @@ const okHP = await shareInviteText(text);
           const txt = ribbon.text;
           c.strokeText(txt, 0, 1); c.fillStyle = "#FFDF6B"; c.fillText(txt, 0, 1);
           c.restore();
+        }
+        /* A3: Rush combo heat — the screen edges glow hotter as the
+           combo climbs (cool blue at x2 through orange to hot rose
+           at x5). Four gradient fills per frame, alpha-pulsed. */
+        function drawHeat(c, now) {
+          if (heatCur < 0.02 || !L) return;
+          const T = 30, col = heatColor(heatCur);
+          const pulse = 0.85 + 0.15 * Math.sin(now / 260);
+          c.save();
+          c.globalAlpha = (0.10 + 0.30 * heatCur) * pulse;
+          let g = c.createLinearGradient(0, 0, 0, T);
+          g.addColorStop(0, col); g.addColorStop(1, "rgba(0,0,0,0)");
+          c.fillStyle = g; c.fillRect(0, 0, L.w, T);
+          g = c.createLinearGradient(0, L.h, 0, L.h - T);
+          g.addColorStop(0, col); g.addColorStop(1, "rgba(0,0,0,0)");
+          c.fillStyle = g; c.fillRect(0, L.h - T, L.w, T);
+          g = c.createLinearGradient(0, 0, T, 0);
+          g.addColorStop(0, col); g.addColorStop(1, "rgba(0,0,0,0)");
+          c.fillStyle = g; c.fillRect(0, 0, T, L.h);
+          g = c.createLinearGradient(L.w, 0, L.w - T, 0);
+          g.addColorStop(0, col); g.addColorStop(1, "rgba(0,0,0,0)");
+          c.fillStyle = g; c.fillRect(L.w - T, 0, T, L.h);
+          c.restore();
+        }
+        /* A2: speech bubbles — a dark pill hanging just under the
+           speaker's avatar disc, tail pointing up at the disc. The
+           spot is below the FIX4 name plate and above the board's
+           top edge, so it covers neither the plates nor the board's
+           active area. Text only, no emoji. */
+        function drawBubbles(c, now) {
+          for (const who of ["you", "cpu"]) {
+            const b = BUB[who]; if (!b) continue;
+            const age = now - b.t0;
+            if (age > b.dur) { BUB[who] = null; continue; }
+            const geo = avGeom(who); if (!geo) continue;
+            let a = 1;
+            if (age < 130) a = age / 130;
+            else if (age > b.dur - 260) a = Math.max(0, (b.dur - age) / 260);
+            const popK = age < 220 ? easeOutBack(clamp(age / 220, 0, 1)) : 1;
+            c.save();
+            c.font = "700 12.5px Arial, sans-serif";
+            const tw = Math.min(178, c.measureText(b.text).width + 26);
+            const bxC = clamp(geo.cx, tw / 2 + 6, Math.max(tw / 2 + 6, L.w - tw / 2 - 6));
+            const byC = geo.cy + geo.R + 26;
+            c.translate(bxC, byC); c.scale(0.7 + 0.3 * popK, 0.7 + 0.3 * popK); c.globalAlpha = a;
+            roundRectPath(c, -tw / 2, -13, tw, 26, 13);
+            c.fillStyle = "rgba(10,14,26,0.90)"; c.fill();
+            c.lineWidth = 1.5; c.strokeStyle = who === "you" ? "#F4C275" : "#FB7185"; c.stroke();
+            const tx = clamp(geo.cx - bxC, -tw / 2 + 12, tw / 2 - 12);
+            c.beginPath(); c.moveTo(tx - 5, -12); c.lineTo(tx + 5, -12); c.lineTo(tx, -19); c.closePath();
+            c.fillStyle = "rgba(10,14,26,0.90)"; c.fill();
+            c.fillStyle = "#FFF"; c.textAlign = "center"; c.textBaseline = "middle";
+            c.fillText(fitRun(c, b.text, tw - 16, "700", 12.5, "Arial"), 0, 1);
+            c.restore();
+          }
         }
         function drawPop(c, now) {
           if (!pop) return;
@@ -10605,6 +10894,22 @@ const okHP = await shareInviteText(text);
           camVec = { x: (cam.fx - L.board.w / 2) * (cam.s - 1) + cam.tx, y: (cam.fy - L.board.h / 2) * (cam.s - 1) + cam.ty };
           ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
           ctx.fillStyle = "#140B31"; ctx.fillRect(0, 0, L.w, L.h);
+          // A3: ease the heat toward the live combo every frame.
+          const ht = heatTarget();
+          heatCur += (ht - heatCur) * Math.min(1, dt * 0.006);
+          if (Math.abs(ht - heatCur) < 0.004) heatCur = ht;
+          /* A4: the heartbeat scales the whole scene around its
+             centre for ~620 ms (two-beat thump), then lets go. */
+          let hbOn = false;
+          if (heartbeat) {
+            const hbt = (now - heartbeat.t0) / 620;
+            if (hbt >= 1) heartbeat = null;
+            else {
+              const s = 1 + 0.016 * beatK(hbt);
+              ctx.save(); ctx.translate(L.w / 2, L.h / 2); ctx.scale(s, s); ctx.translate(-L.w / 2, -L.h / 2);
+              hbOn = true;
+            }
+          }
           const t0 = performance.now();
           drawBG(ctx, now);
           const t1 = performance.now();
@@ -10612,14 +10917,17 @@ const okHP = await shareInviteText(text);
           const t2 = performance.now();
           compositeCached(ctx, cam);
           const t3 = performance.now();
+          drawHeat(ctx, now);
           drawRack(ctx, now);
           drawPop(ctx, now);
           drawRibbon(ctx, now);
           drawHUD(ctx, now, dt);
           const t4 = performance.now();
           drawParticles(ctx, now, dt);
+          drawBubbles(ctx, now);
           drawSpecks(ctx, now);
           drawDrag(ctx);
+          if (hbOn) ctx.restore();
           PROF.bg += t1 - t0; PROF.board += t2 - t1; PROF.comp += t3 - t2; PROF.hud += t4 - t3; PROF.fx += performance.now() - t4; PROF.n++;
         }
         /* Quiet-state detection: at rest the only motion is the idle
@@ -10632,6 +10940,12 @@ const okHP = await shareInviteText(text);
         let lastRenderAt = 0, lastTimerTxt = "", lastTimerFrac = -1;
         function sceneQuiet(now) {
           if (camAnim || ribbon || pop || particles.length || tags.length) return false;
+          if (sweep || pendingCeleb || heartbeat || BUB.you || BUB.cpu) return false;
+          if (heatCur > 0.02) return false;
+          for (const who of ["you", "cpu"]) {
+            const A = AV[who];
+            if ((A.leanUntil && now < A.leanUntil) || (A.deflateUntil && now < A.deflateUntil)) return false;
+          }
           if (boardDirty || now < boardAnimUntil) return false;
           if (typeof G !== "undefined" && G) {
             if (Math.round(dispScore[0]) !== (G.scores[0] || 0) || Math.round(dispScore[1]) !== (G.scores[1] || 0)) return false;
@@ -10651,6 +10965,12 @@ const okHP = await shareInviteText(text);
           const dt = Math.min(50, lastT ? now - lastT : 16); lastT = now;
           avTick(now);
           frameDiff(now);
+          /* A1: the sweep finished — fire the celebration (flash,
+             ribbon, confetti, camera slam) it was holding back. */
+          if (pendingCeleb && now >= pendingCeleb.at) {
+            const pc = pendingCeleb; pendingCeleb = null; sweep = null;
+            fireCelebration(pc.wi, pc.by, pc.cells);
+          }
           frameNo++;
           if (!measureDirty && L) {
             const gs0 = gsEl();
@@ -10699,6 +11019,12 @@ const okHP = await shareInviteText(text);
             makeSprite("gold", IMG.tileGold, TILE_BASE.gold);
             boardCv = document.createElement("canvas"); bx = boardCv.getContext("2d");
             wrapJuice();
+            /* A5: the win cinematic never traps the player — any tap
+               during the cinematic window drops the camera back to
+               the rest pose immediately. */
+            document.addEventListener("pointerdown", () => {
+              if (performance.now() < cineUntil) { camAnim = null; camPrio = 0; finalSlam = false; cineUntil = 0; }
+            }, { passive: true });
             window.addEventListener("resize", () => { measureDirty = true; sizeCanvas(); });
             rafId = requestAnimationFrame(loop);
           });
@@ -10706,6 +11032,8 @@ const okHP = await shareInviteText(text);
         try { init(); } catch (e) {}
         return { get active() { return active; }, fps: () => fpsVal, videoOK: () => videoLive(), version: "scene-3",
           debug: () => ({ ribbon: !!ribbon, ribbonText: ribbon ? ribbon.text : "", pop: !!pop,
+            fx: { sweep: !!sweep, pending: !!pendingCeleb, bubYou: BUB.you ? BUB.you.text : "", bubCpu: BUB.cpu ? BUB.cpu.text : "",
+              heat: +heatCur.toFixed(2), hb: !!heartbeat, camAnim: !!camAnim, camDur: camAnim ? Math.round(camAnim.dur) : 0 },
             camS: camPose ? Math.round(camPose.s * 100) / 100 : 1, camRx: camPose ? Math.round(camPose.rx * 10) / 10 : 0,
             avYou: AV.you.cur, avCpu: AV.cpu.cur, particles: particles.length, dpr: DPR,
             avBox: (() => { try { if (!L) return null; const mk = (g) => g ? { cx: +g.cx.toFixed(1), cy: +g.cy.toFixed(1), ext: +g.EXT.toFixed(1), left: +(g.cx - g.EXT).toFixed(1), right: +(g.cx + g.EXT).toFixed(1), top: +(g.cy - g.EXT).toFixed(1), bottom: +(g.cy + g.EXT).toFixed(1) } : null; return { you: mk(avGeom("you")), cpu: mk(avGeom("cpu")), Lw: L.w, Lh: L.h }; } catch (e) { return null; } })(),
