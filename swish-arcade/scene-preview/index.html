@@ -9326,6 +9326,12 @@ const okHP = await shareInviteText(text);
         filter: none !important; backdrop-filter: none !important;
         animation: none !important; transition: none !important;
       }
+      /* FIX4: long usernames (Rush / Split Screen) must not reflow the
+         scoreboard — the scene measures its panel layout from these
+         rects, and a long .who pushed the CPU panel off-screen. The DOM
+         layer is invisible in scene mode; the canvas draws the name. */
+      body.asc-on #gameScreen .score { min-width: 0; }
+      body.asc-on #gameScreen .score .who { overflow: hidden; white-space: nowrap; }
       body.asc-on #board { transform: none !important; }
       body.asc-on .aj-av-wrap { animation: none !important; transform: none !important; }
       body.asc-on #ajLayer, body.asc-on #ajAmbient, body.asc-on #ajBanner,
@@ -9358,6 +9364,49 @@ const okHP = await shareInviteText(text);
         function animOn() { try { return !STORE || STORE.animOn !== false; } catch (e) { return true; } }
         function reduced() { try { return !!(window.SwishFx && SwishFx.reduced && SwishFx.reduced()); } catch (e) { return false; } }
         function inGame() { const gs = $("#gameScreen"); return !!(gs && !gs.hidden && typeof G !== "undefined" && G); }
+
+        /* ---------------- FIX4: WebAudio unlock assist ----------------
+           The base SFX module creates its AudioContext lazily, inside the
+           placement handler, and its ensure() only calls resume() when the
+           state is exactly "suspended". On iOS (WKWebView) a context
+           created in a pointerup/drag chain can stay locked for the whole
+           session, or land in "interrupted" (e.g. when the avatar videos
+           start playing), and ensure() never retries it — placements and
+           word completions then stay silent while the separate music
+           path plays on. Both base modules look the constructor up on
+           window at call time and create their contexts lazily, so
+           wrapping it here (this block runs before any user input)
+           captures every context the game makes; every real gesture then
+           resumes them all, whatever state they are in. Presentation
+           plumbing only — no sound design changes. */
+        const AC_WRAP = (() => {
+          const Orig = window.AudioContext || window.webkitAudioContext;
+          if (!Orig) return null;
+          const ctxs = [];
+          function WrappedAC() {
+            const ac = new Orig(...arguments);
+            ctxs.push(ac);
+            return ac;
+          }
+          try { WrappedAC.prototype = Orig.prototype; } catch (e) {}
+          try {
+            window.AudioContext = WrappedAC;
+            if (window.webkitAudioContext) window.webkitAudioContext = WrappedAC;
+          } catch (e) { return null; }
+          const poke = () => {
+            for (const ac of ctxs) {
+              try {
+                if (ac.state !== "running" && ac.resume) {
+                  const p = ac.resume();
+                  if (p && p.catch) p.catch(() => {});
+                }
+              } catch (e) {}
+            }
+          };
+          ["pointerdown", "pointerup", "touchend", "click"].forEach((t) =>
+            document.addEventListener(t, poke, { passive: true }));
+          return { ctxs, poke };
+        })();
 
         /* ---------------- assets (tokens replaced at build time) ---------------- */
         const SRC = {
@@ -10175,6 +10224,16 @@ const okHP = await shareInviteText(text);
           }
           return s;
         }
+        // FIX4: fit a text run to maxW — shrink the font first (via
+        // fitFont), then truncate with an ellipsis, so a long name can
+        // never overflow its slot and run under the avatar disc.
+        function fitRun(c, text, maxW, weight, px, family) {
+          fitFont(c, text, maxW, weight, px, family);
+          if (c.measureText(text).width <= maxW) return text;
+          let t = String(text);
+          while (t.length > 1 && c.measureText(t + "\u2026").width > maxW) t = t.slice(0, -1);
+          return t + "\u2026";
+        }
         function drawAvatar(c, who, now) {
           const geo = avGeom(who);
           if (!geo) return;
@@ -10249,25 +10308,36 @@ const okHP = await shareInviteText(text);
           for (const who of ["you", "cpu"]) {
             const p = who === "you" ? L.pYou : L.pCpu;
             const idx = who === "you" ? 0 : 1;
-            const col = avTextCol(who, avGeom(who));
+            const geo = avGeom(who);
+            const col = avTextCol(who, geo);
             const whoEl = $(who === "you" ? "#scoreYou .who" : "#scoreCpu .who");
             const name = ((whoEl && whoEl.textContent) || (who === "you" ? "You" : "CPU")).replace(/\s+/g, " ").trim().toUpperCase();
             const maxW = p.w - col - 8;
-            fitFont(c, name, maxW, "800", 13, "Arial");
-            c.fillStyle = "rgba(255,255,255,0.92)"; c.textBaseline = "top";
-            if (who === "you") { c.textAlign = "left"; c.fillText(name, p.x + col, p.y - 8 + 10); }
-            else { c.textAlign = "right"; c.fillText(name, p.x + p.w - col, p.y - 8 + 10); }
             const sTxt = String(Math.round(dispScore[idx]));
             fitFont(c, sTxt, maxW, "900", 30, "'Arial Black', Arial");
             c.textBaseline = "alphabetic";
             c.fillStyle = who === "you" ? "#FFD60A" : "#FDA4AF";
             if (who === "you") { c.textAlign = "left"; c.fillText(sTxt, p.x + col, p.y + p.h - 10); }
             else { c.textAlign = "right"; c.fillText(sTxt, p.x + p.w - col, p.y + p.h - 10); }
-            if (typeof G !== "undefined" && G && G.scores[0] !== G.scores[1] &&
-                ((idx === 0 && G.scores[0] > G.scores[1]) || (idx === 1 && G.scores[1] > G.scores[0]))) {
-              c.font = "16px serif"; c.textBaseline = "top"; c.textAlign = "left";
-              c.fillText("👑", who === "you" ? p.x + p.w - 26 : p.x + 6, p.y - 8 + 8);
-            }
+            // FIX4: name plate UNDER the disc, centered on the disc's
+            // center-x. The old top-row name ran under the companion
+            // mascot standing on the YOU panel, and the separate corner
+            // crown draw sat on the CPU name's first letter ("👑PU").
+            // The strip below the disc is the one band nothing else
+            // occupies — the score column owns the panel's inner side —
+            // and the text is painted after the avatars, so nothing can
+            // cover it. The leader crown folds into the name run, and
+            // the run is capped at 104px (shrink, then ellipsis) so it
+            // can never reach the score column.
+            const lead = typeof G !== "undefined" && G && G.scores[0] !== G.scores[1] &&
+              ((idx === 0 && G.scores[0] > G.scores[1]) || (idx === 1 && G.scores[1] > G.scores[0]));
+            const run = (lead ? "👑 " : "") + name;
+            c.save();
+            c.textAlign = "center"; c.textBaseline = "alphabetic";
+            c.fillStyle = "rgba(255,255,255,0.92)";
+            const nameCx = clamp(geo.cx, 54, Math.max(54, L.w - 54));
+            c.fillText(fitRun(c, run, 104, "800", 12, "Arial"), nameCx, p.y + p.h - 3);
+            c.restore();
           }
           // title + chips — after the avatars, so the header text stays
           // readable where a disc's top arc passes behind the header row
