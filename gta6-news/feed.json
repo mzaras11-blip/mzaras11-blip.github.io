@@ -1,6 +1,22 @@
 {
-  "updated": "2026-11-20T19:05:42-05:00",
+  "updated": "2026-11-21T01:06:53-05:00",
   "items": [
+    {
+      "title": "Critics give 99, players give 5.4: GTA VI gets review-bombed on Metacritic",
+      "summary": "Push Square reports Metacritic user reviews opened to a 5.4 'Mixed or Average' score driven by a wave of zero ratings citing 30fps and the story, a sharp split from the critics' 99 average, while the PlayStation Store rating, which requires a purchase, sits at 4.84 from about 170,000 reviews.",
+      "source": "Push Square",
+      "url": "https://www.pushsquare.com/news/2026/11/overrated-game-gta-6-ps5-review-bombing-has-started-after-record-breaking-release",
+      "date": "2026-11-20",
+      "tag": "NEWS"
+    },
+    {
+      "title": "GTA VI preloads give Comcast its busiest traffic day ever",
+      "summary": "IGN reports Comcast says November 18 pre-loads made it the busiest day in the company's history, with peak traffic 31% above an average day and 9.6% above the previous record, GTA VI making up 24% of peak traffic and accounting for five of its ten busiest days ever.",
+      "source": "IGN",
+      "url": "https://openweb-ign.cdn.zephr.com/articles/gta-6-triggers-busiest-traffic-day-in-comcast-history",
+      "date": "2026-11-20",
+      "tag": "NEWS"
+    },
     {
       "title": "Rockstar confirms $3.79 billion in day-one sales, the biggest entertainment launch ever",
       "summary": "Rockstar and Take-Two's first official figures put GTA VI day-one retail sales at $3.79 billion worldwide through the end of November 19, with a record 32.5 million copies sold before launch, far above the earlier Sensor Tower estimates; Sam Houser thanked players for the response.",
@@ -102,22 +118,6 @@
       "summary": "Men's Journal walks through PlayStation's required PS5 system software update 26.07-14.23.00, which Sony says must be installed before GTA VI will play, plus checking for game update 01.002.001 (about 602 MB), confirming up to 212 GB of free space, and what to try if PlayStation Network sign-in fails.",
       "source": "Men's Journal",
       "url": "https://www.mensjournal.com/news/gta-6-not-working-ps5-mandatory-update-psn-fix",
-      "date": "2026-11-18",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "PlayStation Network buckles under GTA VI launch-eve demand",
-      "summary": "Polygon reports PS5 players ran into login failures, 'services are busy' messages and stalled downloads on November 18 as the pre-load and update rush hit Sony's servers, with Downdetector logging a sharp spike in outage reports even while Sony's own status page listed the network as healthy.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-is-psn-down-detector-account-services-busy-server-connection-error/",
-      "date": "2026-11-18",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Push Square's spoiler-free tips: accessibility toggles, classic controls and $100 fast travel",
-      "summary": "Push Square's 12-tip guide covers turning on Accessible Combat and Reduced Vehicle Damage in Settings, switching back to the Classic GTA 5 control scheme, skipping a RydeMe ride for $100 to fast travel, banking wallet cash at BuckMe ATMs so it is not lost when busted or wasted, and registering a stolen car at Pay 'N' Spray to keep it for good.",
-      "source": "Push Square",
-      "url": "https://www.pushsquare.com/guides/gta-6-tips-and-tricks-you-need-to-know",
       "date": "2026-11-18",
       "tag": "GUIDES"
     }
