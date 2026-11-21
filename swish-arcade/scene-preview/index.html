@@ -9777,6 +9777,20 @@ const okHP = await shareInviteText(text);
         };
         const bubIdx = {};
         let lastLeader = -1;      // -1 none yet, 0 you, 1 cpu (ties don't move it)
+        /* Combo-bubble fix (audit item 3): the Rush combo as of the
+           last frame, per side. The base game advances the combo
+           inside rushAttemptPlace / rushCpuPlace BEFORE the placement
+           reaches lockLetter — and with it this layer's juice hook —
+           so a snapshot taken around the hook call can never observe
+           the increase. The frame mirror can: the advance and the
+           hook run inside one task, while frames land between
+           placements. Synced every frame in loop(); the juice
+           wrapper compares against it and consumes the step it
+           fires on. */
+        let prevCombo = [1, 1];
+        /* A combo line queued behind the same placement's word
+           bubble: {cat, at} per side, spoken once the slot frees. */
+        const comboSayQ = { you: null, cpu: null };
         function say(who, cat, dur, prio) {
           const lines = BUB_LINES[cat]; if (!lines || !lines.length) return;
           const now = performance.now();
@@ -9908,12 +9922,21 @@ const okHP = await shareInviteText(text);
           }
           if (lead !== 2) lastLeader = lead;
         }
-        function onCombo(cell, by, n) {
+        function onCombo(cell, by, n, afterWord) {
           const s = cellScreen(cell);
           spawnSparks(s.x, s.y, 10);
           tags.push({ text: "×" + n, x: s.x, y: s.y - 14, t0: performance.now() });
           if (n >= 3) { if (by === 0) avReact("you", "celeb", 1700); else avReact("cpu", "smug", 1700); }
-          if (n >= 3) say(by === 0 ? "you" : "cpu", by === 0 ? "comboYou" : "comboCpu", 1500, 1);
+          if (n >= 3) {
+            const who = by === 0 ? "you" : "cpu", cat = by === 0 ? "comboYou" : "comboCpu";
+            /* When this placement also completed a word, the
+               celebration's own bubble (score / taunt) speaks first;
+               queue the combo line to follow it (spoken from loop()
+               once the slot frees) instead of the two bubbles
+               fighting over the same slot in the same instant. */
+            if (afterWord) comboSayQ[who] = { cat, at: performance.now() + 900 };
+            else say(who, cat, 1500, 1);
+          }
         }
         function snapshot() {
           if (typeof G === "undefined" || !G) return { scores: [0, 0], words: new Set(), combo: [0, 0], current: 0 };
@@ -9945,7 +9968,33 @@ const okHP = await shareInviteText(text);
               }
               if (G.rush && G.rush.combo) {
                 const cb = G.rush.combo[by] || 0;
-                if (cb > before.combo[by]) onCombo(cell, by, cb);
+                /* Compare against the previous FRAME's combo, not
+                   the snapshot above: rushComboAdvance already ran
+                   before this hook was reached, so before.combo
+                   always equals cb and the increase was invisible
+                   (audit item 3). prevCombo is last frame's value —
+                   the advance happened after it. Consume the step so
+                   a second hook call inside the same frame cannot
+                   re-fire it. */
+                if (cb > prevCombo[by]) {
+                  /* Did THIS placement complete a word? lockLetter
+                     registers the completion in G.completedWords
+                     BEFORE calling this hook, so the snapshot diff
+                     above (newWord) can miss it; ask the board
+                     directly — a word through this cell that is
+                     complete now but still unknown to the frame-diff
+                     net (prevWords) was finished by this placement.
+                     onCombo sequences its bubble behind that word's
+                     celebration bubble. */
+                  let wordDone = newWord >= 0;
+                  if (!wordDone && G.cellWords && G.cellWords[cell] && G.completedWords) {
+                    for (const wi of G.cellWords[cell]) {
+                      if (G.completedWords.has(wi) && !prevWords.has(wi)) { wordDone = true; break; }
+                    }
+                  }
+                  prevCombo[by] = cb;
+                  onCombo(cell, by, cb, wordDone);
+                }
               }
             } catch (e) {}
           };
@@ -10024,6 +10073,7 @@ const okHP = await shareInviteText(text);
             // danger flags and the cinematic flag all start clean.
             BUB.you = null; BUB.cpu = null; sweep = null; pendingCeleb = null;
             lastLeader = -1; finalSlam = false; heartbeat = null;
+            prevCombo = [1, 1]; comboSayQ.you = null; comboSayQ.cpu = null;
             for (const k in dangerSeen) delete dangerSeen[k];
             dangerG = G;
             return;
@@ -11024,6 +11074,7 @@ const okHP = await shareInviteText(text);
         function sceneQuiet(now) {
           if (camAnim || ribbon || pop || particles.length || tags.length) return false;
           if (sweep || pendingCeleb || heartbeat || BUB.you || BUB.cpu) return false;
+          if (comboSayQ.you || comboSayQ.cpu) return false;
           if (heatCur > 0.02) return false;
           for (const who of ["you", "cpu"]) {
             const A = AV[who];
@@ -11053,6 +11104,22 @@ const okHP = await shareInviteText(text);
           if (pendingCeleb && now >= pendingCeleb.at) {
             const pc = pendingCeleb; pendingCeleb = null; sweep = null;
             fireCelebration(pc.wi, pc.by, pc.cells);
+          }
+          /* Combo-bubble fix: speak a queued combo line once its
+             side's bubble slot has freed (an entry that still cannot
+             speak ~1.8 s after its slot is dropped, never spoken
+             late), then mirror the live Rush combo — this mirror is
+             what the juice wrapper's increase check reads. */
+          for (const who of ["you", "cpu"]) {
+            const q = comboSayQ[who];
+            if (!q) continue;
+            const cur = BUB[who];
+            if (now >= q.at && (!cur || now - cur.t0 >= cur.dur)) { comboSayQ[who] = null; say(who, q.cat, 1500, 1); }
+            else if (now > q.at + 1800) comboSayQ[who] = null;
+          }
+          if (typeof G !== "undefined" && G && G.rush && G.rush.combo) {
+            prevCombo[0] = G.rush.combo[0] || 1;
+            prevCombo[1] = G.rush.combo[1] || 1;
           }
           frameNo++;
           if (!measureDirty && L) {
