@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-21T01:06:53-05:00",
+  "updated": "2026-11-21T07:05:56-05:00",
   "items": [
+    {
+      "title": "GTA VI: The Festival takes over Miami tonight with Travis Scott and Cardi B",
+      "summary": "GGRecon runs through Rockstar's set times for tonight's one-night festival at Mana Wynwood in Miami: doors at 4 p.m. ET across two stages, Cardi B at 7:45, a Justice DJ set at 9, Metro Boomin at midnight and a Cactus Jack closing set led by Travis Scott at 12:40 a.m., with ticket proceeds going to local Miami charities and no official livestream announced.",
+      "source": "GGRecon",
+      "url": "https://www.ggrecon.com/articles/gta-6-festival-set-times-miami/",
+      "date": "2026-11-21",
+      "tag": "NEWS"
+    },
+    {
+      "title": "61% of US PS5 players played GTA VI on launch day, averaging over 8 hours",
+      "summary": "Polygon reports Circana analyst Mat Piscatella shared launch-day data showing 61% of US PlayStation 5 players and 56% of global Xbox players played GTA VI on November 19, averaging 513 minutes on PS5 and 494 minutes on Xbox, figures he called 'absolutely bonkers', with Fortnite a distant second at 10%.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-playtime-stats-launch-day-ps5-xbox-series-x/",
+      "date": "2026-11-20",
+      "tag": "NEWS"
+    },
+    {
+      "title": "'Florida Joker' Lawrence Sullivan turns up in GTA VI's credits",
+      "summary": "GTA BOOM notes the man who accused Rockstar of copying his likeness in the first trailer and demanded $10 million is listed in the game's credits under 'The Local Population' for background work, a far more modest credit than the lead voice role he claims in a viral reaction video.",
+      "source": "GTA BOOM",
+      "url": "https://www.gtaboom.com/the-florida-joker-really-made-it-into-gta-6-as-a-background-face",
+      "date": "2026-11-20",
+      "tag": "NEWS"
+    },
     {
       "title": "Critics give 99, players give 5.4: GTA VI gets review-bombed on Metacritic",
       "summary": "Push Square reports Metacritic user reviews opened to a 5.4 'Mixed or Average' score driven by a wave of zero ratings citing 30fps and the story, a sharp split from the critics' 99 average, while the PlayStation Store rating, which requires a purchase, sits at 4.84 from about 170,000 reviews.",
@@ -96,30 +120,6 @@
       "url": "https://www.usatoday.com/story/tech/gaming/2026/11/19/gta-6-live-updates--live/92811863007/",
       "date": "2026-11-19",
       "tag": "NEWS"
-    },
-    {
-      "title": "Polygon's cheat guide: GTA VI's cheats stay locked until you beat the story",
-      "summary": "Polygon's launch-day guide explains that a Cheats menu only appears in the Progression tab after you finish the campaign, each cheat sits behind its own unlock condition (with progress made before the credits counting), codes are entered on the phone by holding L1 and R1 and tapping a D-pad sequence, and turning one on disables saving and achievements for the rest of that session.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-cheat-codes-list-unlock/",
-      "date": "2026-11-19",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "'Grand Theft Callout': nearly one in five US workers plan to take launch day off",
-      "summary": "MarketWatch reports BambooHR data showing 18% of American workers plan to take November 19 off to play GTA VI, with paid-time-off requests running 13% higher than on comparable days, while Logitech is giving staff its first company-wide 'Game Day' and car-buying platform Delivrd is giving employees Friday off to enjoy the launch.",
-      "source": "MarketWatch",
-      "url": "https://www.marketwatch.com/story/grand-theft-callout-gta-6-fans-are-missing-work-on-the-games-release-day-because-they-dont-want-to-wait-anymore-5f2fa2e3",
-      "date": "2026-11-18",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Won't start on PS5? A required system update is the first fix to check",
-      "summary": "Men's Journal walks through PlayStation's required PS5 system software update 26.07-14.23.00, which Sony says must be installed before GTA VI will play, plus checking for game update 01.002.001 (about 602 MB), confirming up to 212 GB of free space, and what to try if PlayStation Network sign-in fails.",
-      "source": "Men's Journal",
-      "url": "https://www.mensjournal.com/news/gta-6-not-working-ps5-mandatory-update-psn-fix",
-      "date": "2026-11-18",
-      "tag": "GUIDES"
     }
   ]
 }
