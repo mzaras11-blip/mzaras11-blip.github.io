@@ -9379,11 +9379,59 @@ const okHP = await shareInviteText(text);
            captures every context the game makes; every real gesture then
            resumes them all, whatever state they are in. Presentation
            plumbing only — no sound design changes. */
+        /* ---------------- FIX4b: iOS audio-session routing ----------------
+           Device evidence (2026-11-20): the FIX4 build played with NO
+           sound at all in iPhone Safari — music and SFX both — while
+           every instrumented headless run shows both contexts "running"
+           and rendering real audio energy. That combination indicts the
+           one layer JS cannot observe: iOS routes Web Audio to the
+           ambient (ringer) channel by default, so the hardware
+           silent switch mutes the whole page while the contexts report
+           "running" (WebKit bug 237322). The sanctioned lever is the
+           Audio Session API: navigator.audioSession.type = "playback"
+           moves Web Audio onto the media channel, which the switch does
+           not mute. It must be set synchronously inside a user gesture
+           (before the contexts are created/resumed in that gesture) and
+           re-asserted, because WebKit can drop it back to "ambient"
+           after an interruption. The capture-phase listeners below run
+           ahead of the game's own gesture handlers in the same event.
+           For pre-Audio-Session iOS (< 16.4) the legacy aids ride along:
+           a one-shot silent <audio> element played on the first gesture
+           (flips the session under "auto") and a one-frame silent buffer
+           through each context once it runs (the classic unlock).
+           Guarded everywhere — a no-op on browsers without the API. */
         const AC_WRAP = (() => {
           const Orig = window.AudioContext || window.webkitAudioContext;
           if (!Orig) return null;
+          const routePlayback = () => {
+            try {
+              if ("audioSession" in navigator && navigator.audioSession && navigator.audioSession.type !== "playback") {
+                navigator.audioSession.type = "playback";
+              }
+            } catch (e) {}
+          };
+          routePlayback();
+          ["pointerdown", "touchstart", "click"].forEach((t) =>
+            window.addEventListener(t, routePlayback, { capture: true, passive: true }));
+          let shimPlayed = false;
+          const playShim = () => {
+            if (shimPlayed) return;
+            shimPlayed = true;
+            try {
+              const a = document.createElement("audio");
+              a.setAttribute("playsinline", "");
+              a.preload = "auto";
+              // 0.05 s of silence, 8 kHz mono WAV, as a data URI.
+              a.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=";
+              const p = a.play();
+              if (p && p.catch) p.catch(() => {});
+            } catch (e) {}
+          };
+          window.addEventListener("pointerdown", playShim, { capture: true, passive: true });
           const ctxs = [];
+          const warmed = new WeakSet();
           function WrappedAC() {
+            routePlayback();
             const ac = new Orig(...arguments);
             ctxs.push(ac);
             return ac;
@@ -9394,17 +9442,27 @@ const okHP = await shareInviteText(text);
             if (window.webkitAudioContext) window.webkitAudioContext = WrappedAC;
           } catch (e) { return null; }
           const poke = () => {
+            routePlayback();
             for (const ac of ctxs) {
               try {
                 if (ac.state !== "running" && ac.resume) {
                   const p = ac.resume();
                   if (p && p.catch) p.catch(() => {});
                 }
+                if (ac.state === "running" && !warmed.has(ac)) {
+                  warmed.add(ac);
+                  const buf = ac.createBuffer(1, 1, 22050);
+                  const src = ac.createBufferSource();
+                  src.buffer = buf;
+                  src.connect(ac.destination);
+                  src.start(0);
+                }
               } catch (e) {}
             }
           };
-          ["pointerdown", "pointerup", "touchend", "click"].forEach((t) =>
+          ["pointerdown", "pointerup", "touchstart", "touchend", "click"].forEach((t) =>
             document.addEventListener(t, poke, { passive: true }));
+          document.addEventListener("visibilitychange", () => { if (!document.hidden) poke(); });
           return { ctxs, poke };
         })();
 
