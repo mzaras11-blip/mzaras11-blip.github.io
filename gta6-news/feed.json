@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-21T13:06:34-05:00",
+  "updated": "2026-11-21T19:06:35-05:00",
   "items": [
+    {
+      "title": "Guide: find the giant crab and win the Crabshack VF5 SMG",
+      "summary": "Polygon's guide walks through the optional Pelican Valley Outpost event, where the giant crab Karkinos guards a research compound: restore power, log in with the password CLEAVES, crack the safe with code 0072, then use the emergency code 0212 to open the boathouse and claim the crab-themed Crabshack VF5 SMG.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-giant-crab-safe-code-crabshack-vf5-smg-how-to-get-pelican-valley-outpost/",
+      "date": "2026-11-21",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "GTA VI's launch barely dents Steam and Roblox player counts",
+      "summary": "Polygon reports Game File tracking found Steam peaked at 11.4 million players on November 20, barely down from 11.7 million the week before, while Roblox drew 9.6 million players on launch day versus 9.7 million a week earlier, suggesting the console-only launch left rival platforms largely untouched.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-impact-on-steam-roblox/",
+      "date": "2026-11-21",
+      "tag": "NEWS"
+    },
+    {
+      "title": "An unreleased D'Angelo song is hiding on GTA VI's radio",
+      "summary": "Polygon reports players have found the late D'Angelo's unreleased track 'Kamikazi' playing on Worldwide FM, with another song, 'Lady,' on Honey FM — a posthumous nod to the Red Dead Redemption 2 collaborator who died in October 2025, confirmed by his collaborator DJ Dojah via Rolling Stone.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-dangelo-song-rockstar-games-radio/",
+      "date": "2026-11-21",
+      "tag": "NEWS"
+    },
     {
       "title": "GTA VI: The Festival takes over Miami tonight with Travis Scott and Cardi B",
       "summary": "GGRecon runs through Rockstar's set times for tonight's one-night festival at Mana Wynwood in Miami: doors at 4 p.m. ET across two stages, Cardi B at 7:45, a Justice DJ set at 9, Metro Boomin at midnight and a Cactus Jack closing set led by Travis Scott at 12:40 a.m., with ticket proceeds going to local Miami charities and no official livestream announced.",
@@ -96,30 +120,6 @@
       "url": "https://www.mensjournal.com/news/gta-6-sales-19-million-copies-gta-v-record",
       "date": "2026-11-19",
       "tag": "NEWS"
-    },
-    {
-      "title": "GTA VI smashes the livestream record with 7.91 million peak viewers",
-      "summary": "Streams Charts counts a 7.91 million peak across Twitch, YouTube and Kick in the first 24 hours, more than four times the old game-launch record, plus 125.47 million hours watched; IShowSpeed was the most-watched creator at 4.47 million hours.",
-      "source": "Streams Charts",
-      "url": "https://streamscharts.com/news/gta-6-day1-recap",
-      "date": "2026-11-19",
-      "tag": "NEWS"
-    },
-    {
-      "title": "IGN's Chapter 1 walkthrough maps all 23 opening missions",
-      "summary": "IGN's launch-day walkthrough covers every Chapter 1 mission from the prologue through the Leonida Keys, with early-game tips on money, vehicles, wanted levels and missables to grab before the chapter's points of no return.",
-      "source": "IGN",
-      "url": "https://openweb-ign.cdn.zephr.com/wikis/gta-6/Chapter_1_Guide_and_Tips",
-      "date": "2026-11-19",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "Rockstar confirms GTA VI is now available worldwide",
-      "summary": "Rockstar's launch-day announcement confirms GTA VI is out now for PS5 and Xbox Series X|S at the PlayStation Store, Microsoft Store, Rockstar Games Store and retailers, calling it the highest-rated game of all time and quoting Sam Houser on a game meant to exceed expectations; the 34-track official album from Atlantic Records lands at midnight.",
-      "source": "Business Wire",
-      "url": "https://www.businesswire.com/news/home/20261119830927/en/Rockstar-Games-Announces-Grand-Theft-Auto-VI-Now-Available",
-      "date": "2026-11-19",
-      "tag": "OFFICIAL"
     }
   ]
 }
