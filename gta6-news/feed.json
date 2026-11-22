@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-21T19:06:35-05:00",
+  "updated": "2026-11-22T13:05:20-05:00",
   "items": [
+    {
+      "title": "Guide: find the Fast & Furious Mitsubishi Eclipse on Vespucci Island",
+      "summary": "Polygon's guide shows where to steal Brian O'Conner's green Eclipse, in-game as the '97 Maibatsu Penumbra FF, from a gated house on Vespucci Island in Vice-Dale County: break in beside the garage before the alarm, use the slim jim if you've met Moses, then pay $6,750 to register the fast coupe or sell it for $1,100.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-mitsubishi-eclipse-fast-and-furious-brian-oconner-car/",
+      "date": "2026-11-22",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "Players find a tow-truck trick to rip ATMs out of walls for cash",
+      "summary": "Polygon reports players are discovering new ways to get rich, including a Reddit find that a tow truck's hook can yank an outdoor ATM clean out of a building wall, drag it to a safe spot and smash it open for the cash inside, alongside opportunistic loot from crashed robbery scenes.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-players-ridiculous-ways-to-steal-money/",
+      "date": "2026-11-22",
+      "tag": "NEWS"
+    },
+    {
+      "title": "A no-kill GTA VI run fails within two hours",
+      "summary": "Polygon's attempt to play GTA VI without killing anyone ends barely two hours in: after sparing foes with fists and leg shots that incapacitate instead of kill, accidental roadkills in the impound lot and a knife picked up mid-brawl log the first kill, and the 'Hey, Arnold' chase adds more despite sparing Arnold himself.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-no-kill-playthrough-fail/",
+      "date": "2026-11-22",
+      "tag": "NEWS"
+    },
     {
       "title": "Guide: find the giant crab and win the Crabshack VF5 SMG",
       "summary": "Polygon's guide walks through the optional Pelican Valley Outpost event, where the giant crab Karkinos guards a research compound: restore power, log in with the password CLEAVES, crack the safe with code 0072, then use the emergency code 0212 to open the boathouse and claim the crab-themed Crabshack VF5 SMG.",
@@ -96,30 +120,6 @@
       "url": "https://www.businesswire.com/news/home/20261120446139/en/Grand-Theft-Auto-VI-Shatters-Entertainment-Box-Office-Records-with-%243.79-Billion-in-Day-One-Retail-Sales",
       "date": "2026-11-20",
       "tag": "OFFICIAL"
-    },
-    {
-      "title": "Some players hit game-breaking crashes on PS5 and Xbox",
-      "summary": "Dexerto rounds up player reports of repeated crashes since launch — PS5 error CE-108255-1 blocking one player at the early Pipework mission and a PS5 Pro owner in the prologue, plus Xbox Series X crashes minutes into play — with cache clears, database rebuilds and reinstalls not fixing it, and no patch out yet.",
-      "source": "Dexerto",
-      "url": "https://www.dexerto.com/gta/gta-6-players-report-game-breaking-crashes-on-ps5-and-xbox-3430090/",
-      "date": "2026-11-20",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Day-one sales estimate climbs to 24.6 million copies and $2.36 billion",
-      "summary": "Sensor Tower's Thursday-evening update lifts its launch-day estimate to about 24.58 million copies and $2.36 billion, up from 19.1 million and $1.84 billion that morning, with roughly three-quarters of sales on PlayStation; Rockstar and Take-Two still have not confirmed any official figure.",
-      "source": "TweakTown",
-      "url": "https://www.tweaktown.com/news/114795/gta-6-day-one-sales-estimates-break-24-5-million-with-dollars2-36-billion-earned/index.html",
-      "date": "2026-11-19",
-      "tag": "NEWS"
-    },
-    {
-      "title": "GTA VI tops an estimated 19.1 million copies and $1.84 billion by launch morning",
-      "summary": "Sensor Tower puts launch-morning sales at about 19.1 million copies and $1.84 billion, more than double GTA V's first-day $815.7 million, though Take-Two has not confirmed any official figure yet; analysts expect roughly $3 billion in sales by the end of the year.",
-      "source": "Men's Journal",
-      "url": "https://www.mensjournal.com/news/gta-6-sales-19-million-copies-gta-v-record",
-      "date": "2026-11-19",
-      "tag": "NEWS"
     }
   ]
 }
