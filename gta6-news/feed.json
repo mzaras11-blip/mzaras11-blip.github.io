@@ -1,6 +1,22 @@
 {
-  "updated": "2026-11-23T07:05:15-05:00",
+  "updated": "2026-11-23T13:06:23-05:00",
   "items": [
+    {
+      "title": "Rockstar publishes patch notes for GTA VI update 1.002.002",
+      "summary": "Rockstar's official notes for the November 23 update list seven fixes, covering crashes, weather that stayed static for long stretches, autosaving that did not work correctly, story-progressing phone calls that failed to trigger, players being unable to lose their Wanted Level, a broken gym deadlift bar, and partners not handing over bags meant for fences.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-update-today-ver-01002002-where-is-ps5-xbox-download-size-patch-notes/",
+      "date": "2026-11-23",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Report: GTA VI hits 44.9 million copies through its first weekend",
+      "summary": "Alinea Analytics estimates GTA VI sold 44.9 million copies through its first weekend, split 33.7 million on PS5 and 11.2 million on Xbox Series X|S, lifting estimated sales to about $4 billion in four days, with around 40.8 million people playing on Sunday, November 22 alone and roughly 9 million already past 20 hours played.",
+      "source": "GameSpot",
+      "url": "https://www.gamespot.com/articles/gta-6-is-approaching-an-absurd-new-sales-milestone-report-says/",
+      "date": "2026-11-23",
+      "tag": "NEWS"
+    },
     {
       "title": "GTA VI's first post-launch patch is rolling out in waves",
       "summary": "Update 1.002.002 began rolling out on November 23 for PS5 and Xbox Series X|S in three staggered waves over about six hours, at roughly 604 MB on PS5 and 1.6 GB on Xbox, according to reports citing PlayStation Game Size; Rockstar has not yet published official patch notes, so what the patch changes is still unknown.",
@@ -102,22 +118,6 @@
       "summary": "Polygon reports Circana analyst Mat Piscatella shared launch-day data showing 61% of US PlayStation 5 players and 56% of global Xbox players played GTA VI on November 19, averaging 513 minutes on PS5 and 494 minutes on Xbox, figures he called 'absolutely bonkers', with Fortnite a distant second at 10%.",
       "source": "Polygon",
       "url": "https://www.polygon.com/gta-6-playtime-stats-launch-day-ps5-xbox-series-x/",
-      "date": "2026-11-20",
-      "tag": "NEWS"
-    },
-    {
-      "title": "'Florida Joker' Lawrence Sullivan turns up in GTA VI's credits",
-      "summary": "GTA BOOM notes the man who accused Rockstar of copying his likeness in the first trailer and demanded $10 million is listed in the game's credits under 'The Local Population' for background work, a far more modest credit than the lead voice role he claims in a viral reaction video.",
-      "source": "GTA BOOM",
-      "url": "https://www.gtaboom.com/the-florida-joker-really-made-it-into-gta-6-as-a-background-face",
-      "date": "2026-11-20",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Critics give 99, players give 5.4: GTA VI gets review-bombed on Metacritic",
-      "summary": "Push Square reports Metacritic user reviews opened to a 5.4 'Mixed or Average' score driven by a wave of zero ratings citing 30fps and the story, a sharp split from the critics' 99 average, while the PlayStation Store rating, which requires a purchase, sits at 4.84 from about 170,000 reviews.",
-      "source": "Push Square",
-      "url": "https://www.pushsquare.com/news/2026/11/overrated-game-gta-6-ps5-review-bombing-has-started-after-record-breaking-release",
       "date": "2026-11-20",
       "tag": "NEWS"
     }
