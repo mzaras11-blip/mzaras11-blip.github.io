@@ -1,6 +1,14 @@
 {
-  "updated": "2026-11-24T01:07:21-05:00",
+  "updated": "2026-11-24T13:07:49-05:00",
   "items": [
+    {
+      "title": "GTA VI now streams on PS5 and PlayStation Portal with PS Plus Premium",
+      "summary": "Push Square reports GTA VI now supports PS Plus Premium cloud streaming directly to PS5 and PlayStation Portal, a feature that was not available at launch and which it tested working on a PS5 in the UK: Premium members who own a digital copy can stream it from Sony's servers instead of their own console, including on a Portal with no PS5 at home, though the game has not been added to the PS Plus catalogue itself.",
+      "source": "Push Square",
+      "url": "https://www.pushsquare.com/news/2026/11/gta-6-owners-can-now-stream-the-game-to-ps5-ps-portal-with-ps-plus-premium",
+      "date": "2026-11-24",
+      "tag": "NEWS"
+    },
     {
       "title": "Sony: GTA VI is the biggest launch in PlayStation history, with 39 million PS5 players",
       "summary": "Sony says GTA VI is the biggest game launch in PlayStation history across three decades and five console generations: more than 39 million unique players on PS5 between November 19 and 22, a new PlayStation record for concurrent players, 683 million hours played at 17.4 hours per player on average, and the most newly connected PS5 consoles in a single day since the system's 2020 launch outside the holidays, with GTA VI the first game played on 70% of those new consoles.",
@@ -112,14 +120,6 @@
       "url": "https://www.polygon.com/gta-6-mitsubishi-eclipse-fast-and-furious-brian-oconner-car/",
       "date": "2026-11-22",
       "tag": "GUIDES"
-    },
-    {
-      "title": "Players find a tow-truck trick to rip ATMs out of walls for cash",
-      "summary": "Polygon reports players are discovering new ways to get rich, including a Reddit find that a tow truck's hook can yank an outdoor ATM clean out of a building wall, drag it to a safe spot and smash it open for the cash inside, alongside opportunistic loot from crashed robbery scenes.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-players-ridiculous-ways-to-steal-money/",
-      "date": "2026-11-22",
-      "tag": "NEWS"
     }
   ]
 }
