@@ -1,6 +1,22 @@
 {
-  "updated": "2026-11-23T19:08:00-05:00",
+  "updated": "2026-11-24T01:07:21-05:00",
   "items": [
+    {
+      "title": "Sony: GTA VI is the biggest launch in PlayStation history, with 39 million PS5 players",
+      "summary": "Sony says GTA VI is the biggest game launch in PlayStation history across three decades and five console generations: more than 39 million unique players on PS5 between November 19 and 22, a new PlayStation record for concurrent players, 683 million hours played at 17.4 hours per player on average, and the most newly connected PS5 consoles in a single day since the system's 2020 launch outside the holidays, with GTA VI the first game played on 70% of those new consoles.",
+      "source": "PlayStation Blog",
+      "url": "https://blog.playstation.com/?p=425938",
+      "date": "2026-11-23",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Guide: open the portal to the PS2-era Malibu Club and earn Tommy Vercetti's shirt",
+      "summary": "Kotaku explains how to unlock the hidden trip back to 2002 that YouTuber Memeio first cracked: start at the tower in Key Lento, then work the switches at 12 LPL substations in the order of the old Vice City cheat 'Life Is Passing Me By' without fast travelling, follow the text message to Reactor 2 at the power plant between 7 p.m. and 6 a.m., and step through the portal into the PS2-era Malibu Club to find Kent Paul and return with Tommy Vercetti's blue Hawaiian shirt and a chopper motorcycle.",
+      "source": "Kotaku",
+      "url": "https://kotaku.com/gta-6-contains-a-very-hidden-secret-that-teleports-you-back-in-time-to-vice-city-on-the-ps2-2000759500",
+      "date": "2026-11-23",
+      "tag": "GUIDES"
+    },
     {
       "title": "Rockstar releases GTA VI: The Album (Deluxe Edition) with 23 bonus tracks",
       "summary": "Rockstar announced the Deluxe Edition of the GTA VI album is out now on major streaming services, adding 23 bonus tracks with contributions from The Dare, Slayyyter, Denzel Curry, HEALTH, Power Trip, Real Dimez x Sexyy Red and more, on top of the original 34-track release.",
@@ -104,22 +120,6 @@
       "url": "https://www.polygon.com/gta-6-players-ridiculous-ways-to-steal-money/",
       "date": "2026-11-22",
       "tag": "NEWS"
-    },
-    {
-      "title": "A no-kill GTA VI run fails within two hours",
-      "summary": "Polygon's attempt to play GTA VI without killing anyone ends barely two hours in: after sparing foes with fists and leg shots that incapacitate instead of kill, accidental roadkills in the impound lot and a knife picked up mid-brawl log the first kill, and the 'Hey, Arnold' chase adds more despite sparing Arnold himself.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-no-kill-playthrough-fail/",
-      "date": "2026-11-22",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Guide: find the giant crab and win the Crabshack VF5 SMG",
-      "summary": "Polygon's guide walks through the optional Pelican Valley Outpost event, where the giant crab Karkinos guards a research compound: restore power, log in with the password CLEAVES, crack the safe with code 0072, then use the emergency code 0212 to open the boathouse and claim the crab-themed Crabshack VF5 SMG.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-giant-crab-safe-code-crabshack-vf5-smg-how-to-get-pelican-valley-outpost/",
-      "date": "2026-11-21",
-      "tag": "GUIDES"
     }
   ]
 }
