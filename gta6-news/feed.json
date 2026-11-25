@@ -1,6 +1,38 @@
 {
-  "updated": "2026-11-24T13:07:49-05:00",
+  "updated": "2026-11-24T19:05:47-05:00",
   "items": [
+    {
+      "title": "Guide: flip your car back over by hand",
+      "summary": "Polygon explains you cannot right a flipped vehicle from inside in GTA VI: get out, walk against its middle until the shove prompt appears, then hold Square on PS5 or X on Xbox until it is upright — it only works on fully upended cars, boats and larger vehicles, not planes, and not if an obstacle blocks the other side.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-flip-car-how-to/",
+      "date": "2026-11-24",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "Guide: get your car out of the police impound",
+      "summary": "Polygon outlines two ways to recover an impounded car: sneak into the lot and steal it back, then escape the police, or from Chapter 2 use the Scooter Bros app to pay a distance-based fee — an example $699 from Vice City to Port Gellhorn — or spend Premium daily credits.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-impound-car-how-to-get-back/",
+      "date": "2026-11-24",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "Guide: reveal the whole Leonida map from the air",
+      "summary": "Polygon recommends clearing Leonida's fog from the air in a plane or helicopter, ideally the fuel-efficient Mammoth Dodo seaplane found near coastal hangars, swapping aircraft when fuel runs low, checking fuel with down on the D-pad, and avoiding lingering over yellow-tinted restricted sites like Mile Zero Air Station and VCIA.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-reveal-map-best-method-defog-tips/",
+      "date": "2026-11-24",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "Only 40% of GTA VI players have cleared Chapter 2 so far",
+      "summary": "Polygon reports trophy and achievement data showing most players are taking it slow: 66.22% on PS5 have finished Chapter 1 and only 40.55% have cleared Chapter 2, with 6.45% past Chapter 3 and 0.88% past the final mission, despite PS5 players averaging 17.4 hours by Nov. 23.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-player-data-taking-it-slow-progress/",
+      "date": "2026-11-24",
+      "tag": "NEWS"
+    },
     {
       "title": "GTA VI now streams on PS5 and PlayStation Portal with PS Plus Premium",
       "summary": "Push Square reports GTA VI now supports PS Plus Premium cloud streaming directly to PS5 and PlayStation Portal, a feature that was not available at launch and which it tested working on a PS5 in the UK: Premium members who own a digital copy can stream it from Sony's servers instead of their own console, including on a Portal with no PS5 at home, though the game has not been added to the PS Plus catalogue itself.",
@@ -88,38 +120,6 @@
       "url": "https://www.polygon.com/gta-6-update-today-ver-01002002-where-is-ps5-xbox-download-size-patch-notes/",
       "date": "2026-11-23",
       "tag": "NEWS"
-    },
-    {
-      "title": "Report: GTA VI hits 44.9 million copies through its first weekend",
-      "summary": "Alinea Analytics estimates GTA VI sold 44.9 million copies through its first weekend, split 33.7 million on PS5 and 11.2 million on Xbox Series X|S, lifting estimated sales to about $4 billion in four days, with around 40.8 million people playing on Sunday, November 22 alone and roughly 9 million already past 20 hours played.",
-      "source": "GameSpot",
-      "url": "https://www.gamespot.com/articles/gta-6-is-approaching-an-absurd-new-sales-milestone-report-says/",
-      "date": "2026-11-23",
-      "tag": "NEWS"
-    },
-    {
-      "title": "GTA VI's first post-launch patch is rolling out in waves",
-      "summary": "Update 1.002.002 began rolling out on November 23 for PS5 and Xbox Series X|S in three staggered waves over about six hours, at roughly 604 MB on PS5 and 1.6 GB on Xbox, according to reports citing PlayStation Game Size; Rockstar has not yet published official patch notes, so what the patch changes is still unknown.",
-      "source": "Wccftech",
-      "url": "https://wccftech.com/grand-theft-auto-vi-01-002-002-update/",
-      "date": "2026-11-23",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Guide: start the Hell event and beat its demon boss",
-      "summary": "Polygon's guide shows how to trigger the Hell event by meeting Dave and Beelzebub at their garage on the north side of Port Hellhorn after starting Chapter 2 and visiting after 10 p.m., riding the van to a campfire ritual that sends you to Hell, then making the final boss vulnerable by destroying its exploding headless demons to earn the Hellspawn Comshot, a Circles of Hell top and tattoo, and a permanent max health upgrade.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-hell-event-port-hellhorn-circles-of-hell-hellspawn-comshot/",
-      "date": "2026-11-22",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "Guide: find the Fast & Furious Mitsubishi Eclipse on Vespucci Island",
-      "summary": "Polygon's guide shows where to steal Brian O'Conner's green Eclipse, in-game as the '97 Maibatsu Penumbra FF, from a gated house on Vespucci Island in Vice-Dale County: break in beside the garage before the alarm, use the slim jim if you've met Moses, then pay $6,750 to register the fast coupe or sell it for $1,100.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-mitsubishi-eclipse-fast-and-furious-brian-oconner-car/",
-      "date": "2026-11-22",
-      "tag": "GUIDES"
     }
   ]
 }
