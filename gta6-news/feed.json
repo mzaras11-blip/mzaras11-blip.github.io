@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-25T07:06:14-05:00",
+  "updated": "2026-11-25T13:06:02-05:00",
   "items": [
+    {
+      "title": "Guide: disable advanced trackers by letting your partner drive",
+      "summary": "Polygon explains a teamwork workaround for stolen keyless cars with advanced trackers, which normally alert police if you drive too slowly: break in with the key cloner but do not drive off, ask your partner to wait in the car, get into another vehicle, then ask them to follow you — the tracker never activates because you are not driving it, and you can regroup outside Randy's or a Pay 'N' Spray to sell or register it.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-advanced-trackers-how-to-disable-deactivate/",
+      "date": "2026-11-25",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "Guide: unlock GTA VI's good ending",
+      "summary": "ScreenRant lists what the good ending requires before you trigger the finale at Abe's: $2 million banked, a Level 4 relationship between Jason and Lucia, a Professional or Hardened criminal rating, shooting Mendez after his boss fight, and choosing to swim for it when the ending choice comes — with chain-robbing Vice City banks suggested as the way to reach the $2 million. (Spoilers.)",
+      "source": "ScreenRant",
+      "url": "https://screenrant.com/gta-6-good-ending-requirements-2-million-savings/",
+      "date": "2026-11-25",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "Guide: complete The Final Flush for a permanent stamina upgrade",
+      "summary": "TheGamer walks through the conspiracy side quest that starts by scanning the #NOFLUSHERS QR poster in the toilet on Corsair Key: meet Dr. Merle at Frank's Waffles in Vice City, follow his swallowed tracker to the sewage plant, open the secret chamber and get flushed yourself to earn a permanent stamina upgrade — then check the sealed bunker in Lummox County, code 3612, for a dark follow-up reveal.",
+      "source": "TheGamer",
+      "url": "https://www.thegamer.com/grand-theft-auto-6-the-final-flush-walkthrough/",
+      "date": "2026-11-25",
+      "tag": "GUIDES"
+    },
     {
       "title": "GTA VI's painted-on tunnel keeps fooling drivers",
       "summary": "Kotaku reports players keep crashing at speed into a fake tunnel painted on a wall in Vice City's Decor District near Stockyard — a realistic mural, in the style of a Looney Tunes gag, that looks like a real tunnel entrance until the moment you hit it, with clips of the wrecks piling up on social media since launch.",
@@ -96,30 +120,6 @@
       "url": "https://www.rockstargames.com/newswire/article/178ok8411a55o5/grand-theft-auto-vi-the-album-deluxe-edition",
       "date": "2026-11-23",
       "tag": "OFFICIAL"
-    },
-    {
-      "title": "Guide: find Port Gellhorn's missing tourists and its serial killer",
-      "summary": "Polygon's guide starts the side mission from the missing-person posters in the Starlet Motel office after Chapter 2, sneaks into the warehouse across from Moses' garage for the photo clues, then tracks the three tourists — a pink car in the central Gelhorn junkyard, a car in the water at Wild Hog Point, and floorboards in a blue trailer at the north-end trailer park — before a return to the warehouse ends the hunt.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-port-gellhorn-missing-tourists-where-to-find-serial-killer/",
-      "date": "2026-11-23",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "Guide: 'Dealer's Choice' pure vs. cut drugs outcomes explained",
-      "summary": "Polygon explains the Chapter 3 choice for Dre'Quan and Tyrone: selling the pure drugs runs smoothly for $1,500 and a 'professional' profile bump, while the cut drugs anger the buyers — defusing at half price matches the clean outcome, but talking tough forces a shootout and police escape for the same $1,500 and a 'violent' profile bump.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-dealers-choice-pure-cut-explained/",
-      "date": "2026-11-23",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "Guide: find the Silent Hill hotel and open the Marbelle safe",
-      "summary": "Polygon's guide sends you to the Marbelle Hotel in Crosstown, Vice City, beside Pizza Pete: enter by the east door and climb to the top floor to trigger the fog event, then open the desk safe with code 955214 — found on the staircase wall or in roof notes — for $234 and a Crowex Ambassador 'Breakfast' watch.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-silent-hill-hotel-easter-egg-location-marbelle-hotel-safe/",
-      "date": "2026-11-23",
-      "tag": "GUIDES"
     }
   ]
 }
