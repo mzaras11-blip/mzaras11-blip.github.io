@@ -1,6 +1,22 @@
 {
-  "updated": "2026-11-25T01:07:02-05:00",
+  "updated": "2026-11-25T07:06:14-05:00",
   "items": [
+    {
+      "title": "GTA VI's painted-on tunnel keeps fooling drivers",
+      "summary": "Kotaku reports players keep crashing at speed into a fake tunnel painted on a wall in Vice City's Decor District near Stockyard — a realistic mural, in the style of a Looney Tunes gag, that looks like a real tunnel entrance until the moment you hit it, with clips of the wrecks piling up on social media since launch.",
+      "source": "Kotaku",
+      "url": "https://kotaku.com/everyones-getting-trolled-by-gta-6s-looney-toons-tunnel-2001000177",
+      "date": "2026-11-25",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Panini is turning GTA VI's in-game cards into real trading cards",
+      "summary": "Push Square reports Panini is making real-life GTA VI trading cards in partnership with Rockstar, based on the game's fictional sports teams and the collectible cards players find around Leonida: 480 cards across 16 sets, sold in four-pack boxes with rare team-colour parallels to chase, due out in December with no price announced yet.",
+      "source": "Push Square",
+      "url": "https://www.pushsquare.com/news/2026/11/real-life-gta-6-trading-cards-are-about-to-get-scalped",
+      "date": "2026-11-24",
+      "tag": "NEWS"
+    },
     {
       "title": "Why GTA VI's Chapter 1 chores make its ending hurt",
       "summary": "Polygon argues the early house chores — Jason fixing steps and a railing, buying groceries, painting and building furniture for Lucia's return — are what make the Chapter 1 ending land: masked attackers searching for the bag burn the home down around Lucia's fight, destroying the crib, the coffee table they built together and Jason's keepsakes, and leaving the couple in a Port Gellhorn motel. (Spoilers for Chapter 1.)",
@@ -102,22 +118,6 @@
       "summary": "Polygon's guide sends you to the Marbelle Hotel in Crosstown, Vice City, beside Pizza Pete: enter by the east door and climb to the top floor to trigger the fog event, then open the desk safe with code 955214 — found on the staircase wall or in roof notes — for $234 and a Crowex Ambassador 'Breakfast' watch.",
       "source": "Polygon",
       "url": "https://www.polygon.com/gta-6-silent-hill-hotel-easter-egg-location-marbelle-hotel-safe/",
-      "date": "2026-11-23",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "GTA VI hacker Arion Kurtaj walks free after sentencing",
-      "summary": "Polygon reports the Lapsus$ hacker behind the 2022 Rockstar breach, which leaked 90 clips of unfinished GTA VI and cost the studio about $5 million, was sentenced to seven years at Woolwich Crown Court and released under supervision the same day, Nov. 23, with time already served credited and a five-year order restricting his online activity.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-hacker-released-prison-sentence/",
-      "date": "2026-11-23",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Guide: find the UFO dream house near Key Lento",
-      "summary": "Polygon's guide continues the UFO storyline after the first Port Gellhorn encounter and the dream that follows: the house sits north of Gambit Bay and south of Hamlet, northeast of the airstrip near Key Lento — cut through Southpoint airfield and hop the fence section without barbed wire to reach the front entrance.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-ufo-dream-house-location-where-to-find-grand-theft-auto/",
       "date": "2026-11-23",
       "tag": "GUIDES"
     }
