@@ -1,6 +1,22 @@
 {
-  "updated": "2026-11-24T19:05:47-05:00",
+  "updated": "2026-11-25T01:07:02-05:00",
   "items": [
+    {
+      "title": "Why GTA VI's Chapter 1 chores make its ending hurt",
+      "summary": "Polygon argues the early house chores — Jason fixing steps and a railing, buying groceries, painting and building furniture for Lucia's return — are what make the Chapter 1 ending land: masked attackers searching for the bag burn the home down around Lucia's fight, destroying the crib, the coffee table they built together and Jason's keepsakes, and leaving the couple in a Port Gellhorn motel. (Spoilers for Chapter 1.)",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-chapter-1-tragic-ending-home-sweet-home/",
+      "date": "2026-11-24",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Inside GTA VI's fursuit ban and the Furverts rescue",
+      "summary": "Kotaku explains Leonida's fursuit ban, the TV spots urging people to report furries and the hunters licensed to shoot them — and why the game itself is sympathetic rather than hostile: a roadside encounter lets you rescue a fox-suited character and drive members of the underground Furverts to safety, and Jason and Lucia can text that furries are misunderstood, though nothing stops a player choosing violence after collecting the reward.",
+      "source": "Kotaku",
+      "url": "https://kotaku.com/grand-theft-auto-6-gta-6-furries-mission-illegal-2001000147",
+      "date": "2026-11-24",
+      "tag": "NEWS"
+    },
     {
       "title": "Guide: flip your car back over by hand",
       "summary": "Polygon explains you cannot right a flipped vehicle from inside in GTA VI: get out, walk against its middle until the shove prompt appears, then hold Square on PS5 or X on Xbox until it is upright — it only works on fully upended cars, boats and larger vehicles, not planes, and not if an obstacle blocks the other side.",
@@ -104,22 +120,6 @@
       "url": "https://www.polygon.com/gta-6-ufo-dream-house-location-where-to-find-grand-theft-auto/",
       "date": "2026-11-23",
       "tag": "GUIDES"
-    },
-    {
-      "title": "A San Andreas painting from 2021 hid GTA VI's strangest house",
-      "summary": "Polygon traces a beige house with a UFO over it, first added as a painting in the 2021 San Andreas remaster, to a real home in GTA VI's Belville whose garage holds a conspiracy board insisting 'IT'S A SIMULATION,' riffing on identical NPCs, invisible borders around Leonida and Jason and Lucia as the only ones with free will.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-strangest-secret-san-andreas-easter-egg/",
-      "date": "2026-11-23",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Rockstar publishes patch notes for GTA VI update 1.002.002",
-      "summary": "Rockstar's official notes for the November 23 update list seven fixes, covering crashes, weather that stayed static for long stretches, autosaving that did not work correctly, story-progressing phone calls that failed to trigger, players being unable to lose their Wanted Level, a broken gym deadlift bar, and partners not handing over bags meant for fences.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-update-today-ver-01002002-where-is-ps5-xbox-download-size-patch-notes/",
-      "date": "2026-11-23",
-      "tag": "NEWS"
     }
   ]
 }
