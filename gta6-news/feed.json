@@ -1,6 +1,38 @@
 {
-  "updated": "2026-11-25T13:06:02-05:00",
+  "updated": "2026-11-25T19:05:58-05:00",
   "items": [
+    {
+      "title": "Players are hitting a game-breaking Chapter 3 soft lock",
+      "summary": "Polygon reports a game-breaking Chapter 3 soft lock that can leave the character switch stuck on Lucia after the Missing Persons mission, blocking the Jason segment that follows — it is the most-viewed bug on the GTA6Bugs tracker. Workarounds include reloading a manual save from before the Port Gellhorn warehouse meeting and playing Dealer's Choice as Jason first, or trying another duo mission, calling Dunk, or robbing a store together before Raul's job; the Nov. 23 update did not fix it.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-soft-lock-bug-chapter-3-game-breaking/",
+      "date": "2026-11-25",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Snake owners are mad about how Dolores is kept",
+      "summary": "Polygon reports snake owners are up in arms over Dolores, the pet snake in Jason and Lucia's Key Lento bungalow: a Reddit post with more than 92,000 likes blasts her tank for lacking a heat lamp and a water dish, opening the wrong way, and Jason feeding her without tongs — while other players argue a poorly kept snake is exactly in character for the household.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-dolores-snake/",
+      "date": "2026-11-25",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Rockstar explains why GTA VI dropped mission replay",
+      "summary": "Kotaku reports Rockstar senior design director Scott Butchard explained why GTA VI has no mission replay: the team considered it early on, but replaying missions from outside the story felt alien and disconnected and diminished the choices players had made — so story missions are one-and-done, with reloading a manual save the only way back in.",
+      "source": "Kotaku",
+      "url": "https://kotaku.com/gta-6-ditched-mission-replay-because-it-felt-at-odds-with-the-story-2001000335",
+      "date": "2026-11-25",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Rockstar reveals the features cut from GTA VI",
+      "summary": "TheGamer reports Rockstar North's Rob Nelson and Scott Mitchell told PC Games about features cut from GTA VI: tennis was built but scrapped for not meeting the studio's standard, cinema and theatre visits were dropped as not interactive enough, and crawling, safehouse furnishing and crafting were all considered and left out — while mini golf did make the final game.",
+      "source": "TheGamer",
+      "url": "https://www.thegamer.com/gta-6-cut-features-officially-confirmed/",
+      "date": "2026-11-25",
+      "tag": "NEWS"
+    },
     {
       "title": "Guide: disable advanced trackers by letting your partner drive",
       "summary": "Polygon explains a teamwork workaround for stolen keyless cars with advanced trackers, which normally alert police if you drive too slowly: break in with the key cloner but do not drive off, ask your partner to wait in the car, get into another vehicle, then ask them to follow you — the tracker never activates because you are not driving it, and you can regroup outside Randy's or a Pay 'N' Spray to sell or register it.",
@@ -88,38 +120,6 @@
       "url": "https://www.polygon.com/gta-6-player-data-taking-it-slow-progress/",
       "date": "2026-11-24",
       "tag": "NEWS"
-    },
-    {
-      "title": "GTA VI now streams on PS5 and PlayStation Portal with PS Plus Premium",
-      "summary": "Push Square reports GTA VI now supports PS Plus Premium cloud streaming directly to PS5 and PlayStation Portal, a feature that was not available at launch and which it tested working on a PS5 in the UK: Premium members who own a digital copy can stream it from Sony's servers instead of their own console, including on a Portal with no PS5 at home, though the game has not been added to the PS Plus catalogue itself.",
-      "source": "Push Square",
-      "url": "https://www.pushsquare.com/news/2026/11/gta-6-owners-can-now-stream-the-game-to-ps5-ps-portal-with-ps-plus-premium",
-      "date": "2026-11-24",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Sony: GTA VI is the biggest launch in PlayStation history, with 39 million PS5 players",
-      "summary": "Sony says GTA VI is the biggest game launch in PlayStation history across three decades and five console generations: more than 39 million unique players on PS5 between November 19 and 22, a new PlayStation record for concurrent players, 683 million hours played at 17.4 hours per player on average, and the most newly connected PS5 consoles in a single day since the system's 2020 launch outside the holidays, with GTA VI the first game played on 70% of those new consoles.",
-      "source": "PlayStation Blog",
-      "url": "https://blog.playstation.com/?p=425938",
-      "date": "2026-11-23",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Guide: open the portal to the PS2-era Malibu Club and earn Tommy Vercetti's shirt",
-      "summary": "Kotaku explains how to unlock the hidden trip back to 2002 that YouTuber Memeio first cracked: start at the tower in Key Lento, then work the switches at 12 LPL substations in the order of the old Vice City cheat 'Life Is Passing Me By' without fast travelling, follow the text message to Reactor 2 at the power plant between 7 p.m. and 6 a.m., and step through the portal into the PS2-era Malibu Club to find Kent Paul and return with Tommy Vercetti's blue Hawaiian shirt and a chopper motorcycle.",
-      "source": "Kotaku",
-      "url": "https://kotaku.com/gta-6-contains-a-very-hidden-secret-that-teleports-you-back-in-time-to-vice-city-on-the-ps2-2000759500",
-      "date": "2026-11-23",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "Rockstar releases GTA VI: The Album (Deluxe Edition) with 23 bonus tracks",
-      "summary": "Rockstar announced the Deluxe Edition of the GTA VI album is out now on major streaming services, adding 23 bonus tracks with contributions from The Dare, Slayyyter, Denzel Curry, HEALTH, Power Trip, Real Dimez x Sexyy Red and more, on top of the original 34-track release.",
-      "source": "Rockstar Games",
-      "url": "https://www.rockstargames.com/newswire/article/178ok8411a55o5/grand-theft-auto-vi-the-album-deluxe-edition",
-      "date": "2026-11-23",
-      "tag": "OFFICIAL"
     }
   ]
 }
