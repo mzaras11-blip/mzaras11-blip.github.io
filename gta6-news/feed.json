@@ -1,6 +1,14 @@
 {
-  "updated": "2026-11-26T07:06:08-05:00",
+  "updated": "2026-11-26T13:05:55-05:00",
   "items": [
+    {
+      "title": "Rockstar's UK staff vote 75% against union recognition",
+      "summary": "Polygon reports Rockstar's UK workforce voted 75% to 25% against a formal recognition deal with the IWGB Game Workers Union, on 93.2% turnout with 1,544 staff across the Edinburgh, Leeds, Lincoln, Dundee and London offices taking part — so management will not be required to meet or negotiate with the union, though staff can still organize and the IWGB says it will keep fighting; the two-week ballot ran through GTA VI's launch week alongside the still-pending tribunal over 31 workers fired in 2025.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/rockstar-game-workers-union-vote-gta-6/",
+      "date": "2026-11-26",
+      "tag": "NEWS"
+    },
     {
       "title": "Rockstar's custom GTA VI PS5 Pro consoles are giveaway-only — just 100 exist",
       "summary": "TweakTown reports Rockstar is giving away, not selling, at least 100 custom GTA VI PS5 Pro consoles — dark gray-and-black with etched palm trees, the GTA VI logo and neon teal-to-magenta accents, each carrying a unique serial number — first to Miami Heat players before launch and now to streamers and influencers such as Davy Jones, while the matching black and white limited-edition DualSense controllers are sold at retail for $84.99.",
@@ -112,14 +120,6 @@
       "url": "https://kotaku.com/grand-theft-auto-6-gta-6-furries-mission-illegal-2001000147",
       "date": "2026-11-24",
       "tag": "NEWS"
-    },
-    {
-      "title": "Guide: flip your car back over by hand",
-      "summary": "Polygon explains you cannot right a flipped vehicle from inside in GTA VI: get out, walk against its middle until the shove prompt appears, then hold Square on PS5 or X on Xbox until it is upright — it only works on fully upended cars, boats and larger vehicles, not planes, and not if an obstacle blocks the other side.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-flip-car-how-to/",
-      "date": "2026-11-24",
-      "tag": "GUIDES"
     }
   ]
 }
