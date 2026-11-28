@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-27T13:05:51-05:00",
+  "updated": "2026-11-27T19:08:42-05:00",
   "items": [
+    {
+      "title": "GTA VI's headphones were first planned for Vice City back in 2002",
+      "summary": "TweakTown reports former Rockstar tech lead Obbe Vermeij says a portable radio feature was planned for GTA: Vice City in 2002 — the team even made a pickup icon for it — but it was cut for a technical reason he no longer recalls; GTA VI finally ships the idea, letting players keep listening to radio and podcasts on foot through earbuds after stepping out of a car, though neither version lets you pick individual tracks.",
+      "source": "TweakTown",
+      "url": "https://www.tweaktown.com/news/114941/gta-6s-headphone-feature-was-originally-planned-for-gta-vice-city-back-in-2002-former-rockstar-developer-reveals/index.html",
+      "date": "2026-11-27",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Guide: complete the brainwashing Easter egg and the Russo bunkers",
+      "summary": "Polygon walks through the long 'Kill the President' Easter egg: start with José Bermúdez by the Joe Russo monument in Downtown Vice City, open the Sharktooth Island presidential bunker with code 010317 and its safe with 2975 to find Russo's 1922 pistol, then the Grassrivers bunker hatch with 085355, and work through the IAA black site's time-loop sequence (door code 090607) to finish with the Brainwasher 1922 pistol and the 'Brainwashed' tattoo design. (Spoilers.)",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-brainwashing-president-easter-egg-walkthrough/",
+      "date": "2026-11-27",
+      "tag": "GUIDES"
+    },
+    {
+      "title": "GTA VI passes 50 million copies in its first week, estimates say",
+      "summary": "Polygon reports Alinea Analytics estimates GTA VI sold 53 million copies in the week after its Nov. 19 release, worth about $4.7 billion — against GTA V's 29 million copies in its entire first month — with more than 75% of copies sold on PS5, nearly 7 million players already past 50 hours in the game, and around 250,000 past 100 hours.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-how-much-sold-week-one-rockstar-games/",
+      "date": "2026-11-27",
+      "tag": "NEWS"
+    },
     {
       "title": "Guide: every story choice in GTA VI and what each one does",
       "summary": "GameRant catalogues all 28 main-story choices across GTA VI's five chapters and what each one changes: sparing Arnold pays out $10,000 from Brian in Chapter 4, taking the pure product in Dealer's Choice avoids a shootout, and saving Nicole in The Cartel Heist takes a $10 million vault haul — while plenty of smaller picks, like Lucia's dress or whether to shake Mattia's hand, change nothing at all. (Spoilers.)",
@@ -96,30 +120,6 @@
       "url": "https://kotaku.com/gta-6-ditched-mission-replay-because-it-felt-at-odds-with-the-story-2001000335",
       "date": "2026-11-25",
       "tag": "NEWS"
-    },
-    {
-      "title": "Rockstar reveals the features cut from GTA VI",
-      "summary": "TheGamer reports Rockstar North's Rob Nelson and Scott Mitchell told PC Games about features cut from GTA VI: tennis was built but scrapped for not meeting the studio's standard, cinema and theatre visits were dropped as not interactive enough, and crawling, safehouse furnishing and crafting were all considered and left out — while mini golf did make the final game.",
-      "source": "TheGamer",
-      "url": "https://www.thegamer.com/gta-6-cut-features-officially-confirmed/",
-      "date": "2026-11-25",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Guide: disable advanced trackers by letting your partner drive",
-      "summary": "Polygon explains a teamwork workaround for stolen keyless cars with advanced trackers, which normally alert police if you drive too slowly: break in with the key cloner but do not drive off, ask your partner to wait in the car, get into another vehicle, then ask them to follow you — the tracker never activates because you are not driving it, and you can regroup outside Randy's or a Pay 'N' Spray to sell or register it.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-advanced-trackers-how-to-disable-deactivate/",
-      "date": "2026-11-25",
-      "tag": "GUIDES"
-    },
-    {
-      "title": "Guide: unlock GTA VI's good ending",
-      "summary": "ScreenRant lists what the good ending requires before you trigger the finale at Abe's: $2 million banked, a Level 4 relationship between Jason and Lucia, a Professional or Hardened criminal rating, shooting Mendez after his boss fight, and choosing to swim for it when the ending choice comes — with chain-robbing Vice City banks suggested as the way to reach the $2 million. (Spoilers.)",
-      "source": "ScreenRant",
-      "url": "https://screenrant.com/gta-6-good-ending-requirements-2-million-savings/",
-      "date": "2026-11-25",
-      "tag": "GUIDES"
     }
   ]
 }
