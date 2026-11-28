@@ -1,6 +1,30 @@
 {
-  "updated": "2026-11-27T19:08:42-05:00",
+  "updated": "2026-11-28T13:07:02-05:00",
   "items": [
+    {
+      "title": "Rockstar's own team doubted GTA VI's launch day would ever come",
+      "summary": "Polygon reports co-studio head Rob Nelson told GamesRadar that after 13 years of development, many on Rockstar's senior team felt the Nov. 19 launch might never actually arrive — he called finally shipping GTA VI surreal and a relief, with the team still in disbelief until players started talking about and playing it.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-rockstar-questioning-launch/",
+      "date": "2026-11-28",
+      "tag": "NEWS"
+    },
+    {
+      "title": "Did GTA VI live up to 13 years of hype? Polygon weighs the backlash",
+      "summary": "Polygon argues GTA VI did live up to its hype, pointing to a 99 Metacritic score and a true monoculture launch — and reading even the review bombing that dragged its user score to 5.7 as proof: the loud backlash, rather than indifference, shows the game landed exactly as big as the 13-year wait promised.",
+      "source": "Polygon",
+      "url": "https://www.polygon.com/gta-6-launch-week-expectations/",
+      "date": "2026-11-28",
+      "tag": "NEWS"
+    },
+    {
+      "title": "A major GTA VI spoiler is spreading online — here's how to dodge it",
+      "summary": "TheGamer warns that a late-game reveal is being spammed across TikTok comments, subreddits and social replies while about half of players are still in the early chapters, and advises muting keywords and avoiding comment sections until you've finished the story. (The linked article names the spoiler.)",
+      "source": "TheGamer",
+      "url": "https://www.thegamer.com/gta-6-cameo-spoiler-online-warning/",
+      "date": "2026-11-28",
+      "tag": "NEWS"
+    },
     {
       "title": "GTA VI's headphones were first planned for Vice City back in 2002",
       "summary": "TweakTown reports former Rockstar tech lead Obbe Vermeij says a portable radio feature was planned for GTA: Vice City in 2002 — the team even made a pickup icon for it — but it was cut for a technical reason he no longer recalls; GTA VI finally ships the idea, letting players keep listening to radio and podcasts on foot through earbuds after stepping out of a car, though neither version lets you pick individual tracks.",
@@ -96,30 +120,6 @@
       "url": "https://www.polygon.com/gta-6-standout-vehicles-key-lento-locations-list-grand-theft-auto/",
       "date": "2026-11-25",
       "tag": "GUIDES"
-    },
-    {
-      "title": "Players are hitting a game-breaking Chapter 3 soft lock",
-      "summary": "Polygon reports a game-breaking Chapter 3 soft lock that can leave the character switch stuck on Lucia after the Missing Persons mission, blocking the Jason segment that follows — it is the most-viewed bug on the GTA6Bugs tracker. Workarounds include reloading a manual save from before the Port Gellhorn warehouse meeting and playing Dealer's Choice as Jason first, or trying another duo mission, calling Dunk, or robbing a store together before Raul's job; the Nov. 23 update did not fix it.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-soft-lock-bug-chapter-3-game-breaking/",
-      "date": "2026-11-25",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Snake owners are mad about how Dolores is kept",
-      "summary": "Polygon reports snake owners are up in arms over Dolores, the pet snake in Jason and Lucia's Key Lento bungalow: a Reddit post with more than 92,000 likes blasts her tank for lacking a heat lamp and a water dish, opening the wrong way, and Jason feeding her without tongs — while other players argue a poorly kept snake is exactly in character for the household.",
-      "source": "Polygon",
-      "url": "https://www.polygon.com/gta-6-dolores-snake/",
-      "date": "2026-11-25",
-      "tag": "NEWS"
-    },
-    {
-      "title": "Rockstar explains why GTA VI dropped mission replay",
-      "summary": "Kotaku reports Rockstar senior design director Scott Butchard explained why GTA VI has no mission replay: the team considered it early on, but replaying missions from outside the story felt alien and disconnected and diminished the choices players had made — so story missions are one-and-done, with reloading a manual save the only way back in.",
-      "source": "Kotaku",
-      "url": "https://kotaku.com/gta-6-ditched-mission-replay-because-it-felt-at-odds-with-the-story-2001000335",
-      "date": "2026-11-25",
-      "tag": "NEWS"
     }
   ]
 }
